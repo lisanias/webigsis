@@ -10,11 +10,36 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
+Route::get('/teste', function() {
+	return "teste";
+});
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
-Auth::routes();
+Route::get('/login', 'Auth\LoginController@login')->name('login');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
+/*Route::group(['middleware' => 'auth'], function() {*/
+	
+	Route::get('/profile/', 'Auth\UserController@profile')->name('profile');
+	Route::get('/profile/edit', 'Auth\UserController@edit')->name('profile.edit');
+
+	Route::get('/config', function(){
+		return 'config';
+	})->name('config');
+
+	Route::get('/help', function(){
+		return 'Ajuda';
+	})->name('help');
+
+
+	
+
+	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/users/list', 'Auth\UserController@list')->name('users.list');
+/*});*/
