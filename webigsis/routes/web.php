@@ -43,3 +43,6 @@ Route::get('/login', 'Auth\LoginController@login')->name('login');
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/users/list', 'Auth\UserController@list')->name('users.list');
 /*});*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
