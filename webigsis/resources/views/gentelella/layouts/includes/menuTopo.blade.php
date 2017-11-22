@@ -5,7 +5,11 @@
 <ul class="nav navbar-nav navbar-right">
     <li>
         <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <img src="{{ asset('user-images') }}/{{ Auth::user()->avatar }}" alt="">{{ Auth::user()->name }}
+            @if (Auth::user()->avatar)
+                <img src="{{ asset('user-images') }}/{{ Auth::user()->avatar}}" alt="">{{ Auth::user()->name }}
+            @else
+                <img src="{{ asset('user-images') }}/no-user.jpg" alt="">{{ Auth::user()->name }}
+            @endif
             <span class=" fa fa-angle-down"></span>
         </a>
         

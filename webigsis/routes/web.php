@@ -12,22 +12,20 @@
 */
 Auth::routes();
 
-Route::get('/teste', function() {
-	return "teste";
-});
-
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+
 Route::get('/login', 'Auth\LoginController@login')->name('login');
 
 
-
-/*Route::group(['middleware' => 'auth'], function() {*/
+Route::group(['middleware' => 'auth'], function() {
 	
-	Route::get('/profile/', 'Auth\UserController@profile')->name('profile');
-	Route::get('/profile/edit', 'Auth\UserController@edit')->name('profile.edit');
+	Route::get('/profile', 'Auth\UserController@profile')->name('profile');
+	Route::post('/profile/store', 'Auth\UserController@store')->name('profile.store');
+
+	Route::resource('/user', 'Auth\UserController');
 
 	Route::get('/config', function(){
 		return 'config';
@@ -37,12 +35,8 @@ Route::get('/login', 'Auth\LoginController@login')->name('login');
 		return 'Ajuda';
 	})->name('help');
 
-
-	
-
 	Route::get('/home', 'HomeController@index')->name('home');
-	Route::get('/users/list', 'Auth\UserController@list')->name('users.list');
-/*});*/
-Auth::routes();
+
+});
 
 Route::get('/home', 'HomeController@index')->name('home');

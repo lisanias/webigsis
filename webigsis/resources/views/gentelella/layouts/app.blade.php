@@ -50,7 +50,11 @@
                     <!-- menu profile quick info -->
                     <div class="profile clearfix">
                       <div class="profile_pic">
-                        <img src="{{ asset('user-images') }}/{{ Auth::user()->avatar}}" alt="..." class="img-circle profile_img">
+                        @if (Auth::user()->avatar)
+                            <img src="{{ asset('user-images') }}/{{ Auth::user()->avatar }}" class="img-circle profile_img">
+                        @else
+                            <img src="{{ asset('user-images') }}/{{ 'user.png' }}" class="img-circle profile_img">
+                        @endif
                       </div>
                       <div class="profile_info">
                         <span>Olá,</span>
@@ -88,7 +92,7 @@
                         </a>
 
                         <a data-toggle="tooltip" data-placement="top" title="Sair" 
-                                    href="{{ route('logout') }} 
+                                    href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
 
@@ -121,7 +125,7 @@
                 
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>{!!$label or '<i class="fa fa-bullseye" aria-hidden="true"></i>'!!}</h3>
+                        <h3>{!! $label or 'WebIG'!!}</h3>
                     </div>
 
                     <div class="title_right">
@@ -147,10 +151,10 @@
                         </div>
                     </div>
 
+                </div>
             </div>
+        
         </div>
-    
-    </div>
 
     <!-- Scripts -->
     

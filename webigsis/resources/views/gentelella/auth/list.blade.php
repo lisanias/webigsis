@@ -26,8 +26,8 @@
 	                          <td>{{$user->name}}</td>
 	                          <td>{{$user->email}}</td>
 	                          <td>
-	                          	  <a href="{{ url("profile/$user->id/show") }}" class="btn btn-success btn-xs"><span class="fa fa-check"></span></a>
-	                          	  <a href="#" class="btn btn-info btn-xs"><span class="fa fa-edit"></span></a>
+	                          	  <a href="{{ route('user.show', $user->id) }}" class="btn btn-success btn-xs"><span class="fa fa-check"></span></a>
+	                          	  <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info btn-xs"><span class="fa fa-edit"></span></a>
 	                          	  <a href="#" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span></a>
 	                          </td>
 	                       </tr>

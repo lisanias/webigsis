@@ -4,9 +4,18 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class UserController extends Controller
 {
+    
+    private $label="<i class='fa fa-user-circle' aria-hidden='true'></i> ";
+    
+    public function __construct()
+    {
+        //
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        $label = $this->label.'Usuários/Listar';
+        return view('gentelella.auth.list', compact('users','label','auth'));
     }
 
     /**
@@ -24,19 +35,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $title = "WebIG - Usuários";
+        $label = $this->label."Usuários";
+        return view('gentelella.auth.create', compact('title', 'label' ));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -46,9 +49,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $user = User::find($id);
         $label = 'Usuários';
         $title = 'WebIG | Usuário';
-        return view('gentelella.auth.profile', compact('title','label'));
+        //return "profile: {$user}";
+        return view('gentelella.auth.profile', compact('title','label', 'user'));
     }
 
     /**
@@ -59,7 +64,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return 'Editar perfil';
+        $user = User::find($id);
+        $title = "WebIG - Usuários";
+        $label = $this->label."Usuários";
+        return view('gentelella.auth.create', compact('title', 'label', 'user' ));
     }
 
     /**
@@ -71,7 +79,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dataForm = $request->all();
+        $user = User::find($id);
+        $update = $user->update($dataForm);
+
+        if( $update ) 
+            return redirect()->route('user.show', $id);
+        else 
+            return redirect()->route('user.edit', $id)->with(['errors'=>'Falha ao editar.']);
+        
+
+
     }
 
     /**
@@ -89,20 +107,13 @@ class UserController extends Controller
      * by lisanias
      */
 
-    public function list (\App\User $user) 
-    {
-        $users = $user->all();
-        $label = 'Usuários';
-        return view('gentelella.auth.list', compact('users','label','auth'));
-        
-    }
-
     public function profile () 
     {
-        $autor = auth()->user();
+        $user = auth()->user();
         $label = 'Usuários';
         $title = 'WebIG | Usuário';
-        return view('gentelella.auth.profile', compact('title','label', 'autor'));
+        //return "profile: {$autor}";
+        return view('gentelella.auth.profile', compact('title','label', 'user'));
     }
 
 }

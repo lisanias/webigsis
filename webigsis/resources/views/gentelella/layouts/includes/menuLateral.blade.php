@@ -13,8 +13,8 @@
 	</a>
 	<ul class="nav child_menu">
 		<li><a href="{{ route('profile') }}">Perfil</a></li>
-		<li><a href="{{ route('users.list') }}">Listar</a></li>
-		<li><a href="#">Adicionar</a></li>
+		<li><a href="{{ route('user.index') }}">Listar</a></li>
+		<li><a href="{{ route('user.create') }}">Register</a></li>
 	</ul>
 </li>
 
