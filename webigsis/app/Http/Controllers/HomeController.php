@@ -23,7 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $main_user = auth()->user();
-        return view('gentelella.home', compact('main_user'));
+        return view('gentelella.home');
     }
 }
