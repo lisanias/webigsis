@@ -84,7 +84,7 @@ class UserController extends Controller
         $update = $user->update($dataForm);
 
         if( $update ) 
-            return redirect()->route('user.show', $id);
+            return redirect()->route('user.index');
         else 
             return redirect()->route('user.edit', $id)->with(['errors'=>'Falha ao editar.']);
         
@@ -100,7 +100,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $delete = User::destroy($id);
+        //$delete = false;
+
+        if( $delete ) 
+            return redirect()->route('user.index')->with(['alert'=>'Usuário apagado.']);
+        else 
+            return redirect()->route('user.show', $id)->with(['errors'=>'Falha ao editar.']);
     }
 
     /** 

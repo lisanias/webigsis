@@ -32,6 +32,7 @@
 
 			<a href="{{ route("user.edit", $user->id) }}" class="btn btn-primary"><i class="fa fa-edit m-right-xs"></i> Alterar perfil</a>
 
+
 		</div>
 
       	<div class="col-md-9 col-sm-9 col-xs-12">

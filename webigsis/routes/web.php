@@ -24,7 +24,9 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('/profile', 'Auth\UserController@profile')->name('profile');
 	Route::post('/profile/store', 'Auth\UserController@store')->name('profile.store');
 
-	Route::resource('/user', 'Auth\UserController');
+	Route::get('/user/{id}/destroyer', 'Auth\UserController@destroy')->name('user.destroyer');
+
+	Route::resource('user', 'Auth\UserController');
 
 	Route::get('/config', function(){
 		return 'config';
