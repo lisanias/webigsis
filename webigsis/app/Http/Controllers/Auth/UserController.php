@@ -25,7 +25,7 @@ class UserController extends Controller
     {
         $users = User::all();
         $label = $this->label.'Usuários/Listar';
-        return view('gentelella.auth.list', compact('users','label','auth'));
+        return view('auth.list', compact('users','label','auth'));
     }
 
     /**
@@ -37,7 +37,7 @@ class UserController extends Controller
     {
         $title = "WebIG - Usuários";
         $label = $this->label."Usuários";
-        return view('gentelella.auth.create', compact('title', 'label' ));
+        return view('auth.create', compact('title', 'label' ));
     }
 
 
@@ -53,7 +53,7 @@ class UserController extends Controller
         $label = 'Usuários';
         $title = 'WebIG | Usuário';
         //return "profile: {$user}";
-        return view('gentelella.auth.profile', compact('title','label', 'user'));
+        return view('auth.profile', compact('title','label', 'user'));
     }
 
     /**
@@ -67,7 +67,7 @@ class UserController extends Controller
         $user = User::find($id);
         $title = "WebIG - Usuários";
         $label = $this->label."Usuários";
-        return view('gentelella.auth.create', compact('title', 'label', 'user' ));
+        return view('auth.create', compact('title', 'label', 'user' ));
     }
 
     /**
@@ -120,7 +120,7 @@ class UserController extends Controller
         $label = 'Usuários';
         $title = 'WebIG | Usuário';
         //return "profile: {$autor}";
-        return view('gentelella.auth.profile', compact('title','label', 'user'));
+        return view('auth.profile', compact('title','label', 'user'));
     }
 
 }

@@ -120,4 +120,13 @@ return [
         ],
     ],
 
+    // adicionado por lisanias para enviar email do localhost
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ],
+
 ];

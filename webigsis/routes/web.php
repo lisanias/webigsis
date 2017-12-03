@@ -43,3 +43,7 @@ Route::group(['middleware' => 'auth'], function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/discipulo', function() {
+	return view('discipulos.edit-add');
+})->name('discipulo');
+
