@@ -23,9 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
 	
 	Route::get('/profile', 'Auth\UserController@profile')->name('profile');
 	Route::post('/profile/store', 'Auth\UserController@store')->name('profile.store');
-
 	Route::get('/user/{id}/destroyer', 'Auth\UserController@destroy')->name('user.destroyer');
-
 	Route::resource('user', 'Auth\UserController');
 
 	Route::get('/config', function(){
@@ -42,8 +40,11 @@ Route::group(['middleware' => 'auth'], function() {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/discipulo', function() {
-	return view('discipulos.edit-add');
-})->name('discipulo');
+// discupulos
+Route::group(['namespace' => 'discipulo', 'middleware' => 'auth'], function() {
+	Route::get('/discipulo','DiscipuloController@index')->name('discipulo');
+	Route::get('/discipulo/add','DiscipuloController@add')->name('discipulo.add');
+	Route::post('/discipulo/store','DiscipuloController@store')->name('discipulo.store');
+});
+
 

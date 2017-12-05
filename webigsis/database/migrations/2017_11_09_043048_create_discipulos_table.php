@@ -21,12 +21,13 @@ class CreateDiscipulosTable extends Migration
             $table->string('email');
             $table->string('avatar')->default('default.jpg');
             $table->boolean('sexo');
-            $table->date('nascimento_data');
-            $table->string('nascimento_cidade',100);
-            $table->string('nascimento_uf',2);
-            $table->integer('recebidoModo_id')->unsigned();
-            $table->boolean('encontro');
-            $table->boolean('escolaMinisterios');
+            $table->date('nascimento_data')->nullable();
+            $table->string('nascimento_cidade',100)->nullable();
+            $table->string('nascimento_uf',2)->nullable();
+            $table->integer('recebidoModo_id')->unsigned()->nullable();
+            $table->boolean('encontro')->nullable();
+            $table->boolean('escolaMinisterios')->nullable();
+            $table->boolean('batismo')->nullable();
 
             $table->timestamps();
             
