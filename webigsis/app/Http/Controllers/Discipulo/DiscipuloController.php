@@ -46,6 +46,13 @@ class DiscipuloController extends Controller
         // Pega todos os dados que vem do formulário
         $dataForm = $request->all();
 
+        /**
+         * Campos que não podem ser null 
+         * 
+         * $dataForm['batismo'] = ( isset($dataForm['sexo'])) ? 1 : 0;
+         */
+        
+
         // Faz o cadastro na base de dados
         $discipulo = $this->discipulo->create($dataForm);
         $discipulo_id = $discipulo->id;
@@ -55,7 +62,7 @@ class DiscipuloController extends Controller
         if( $discipulo ) 
             return redirect()
                 ->route('discipulo.show', $discipulo_id)
-                ->with(['alert'=>'Discipulo adicionado com sucesso.', 'alert_type'=>'danger']);
+                ->with(['alert'=>'Discipulo adicionado com sucesso.', 'alert_type'=>'success']);
         else
             return redirect()
                 ->route('discipulo.add')

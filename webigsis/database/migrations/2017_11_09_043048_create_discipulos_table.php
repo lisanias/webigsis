@@ -20,7 +20,7 @@ class CreateDiscipulosTable extends Migration
             $table->integer('celula_id')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('avatar')->default('default.jpg');
             $table->string('sexo', 1);
 
