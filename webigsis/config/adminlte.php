@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => "Web<b>IG</b><small><sub>sis</sub></small>",
+    'logo' => "<span class='web'>Web</span><span class='ig'>IG</span><sub class='sis'>sis</sub>",
 
     'logo_mini' => '<b>W<small><sub>S</sub></small></b>',
 

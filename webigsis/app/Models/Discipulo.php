@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Discipulo extends Model
 {
     protected $fillable = [
+        'e_lider', 
         'lider_id', 
         'user_id', 
         'name', 
@@ -16,7 +17,7 @@ class Discipulo extends Model
         'nascimento_data', 
         'nascimento_cidade', 
         'nascimento_uf',
-        'recebidoModo',
+        'recebidoModo_id',
         'encontro', 
         'escolaMinisterios', 
         'batismo',

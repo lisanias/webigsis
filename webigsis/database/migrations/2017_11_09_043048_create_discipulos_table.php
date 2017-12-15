@@ -15,13 +15,14 @@ class CreateDiscipulosTable extends Migration
     {
         Schema::create('discipulos', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('e_lider')->nullable();
             $table->integer('lider_id')->unsigned()->nullable();
             $table->integer('celula_id')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('name');
             $table->string('email');
             $table->string('avatar')->default('default.jpg');
-            $table->boolean('sexo');
+            $table->string('sexo', 1);
 
             $table->date('nascimento_data')->nullable();
             $table->string('nascimento_cidade',100)->nullable();

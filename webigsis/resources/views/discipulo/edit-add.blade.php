@@ -25,7 +25,35 @@
 
 				<div class="box-body">
 
-					<div class="form-group">
+					<div class='well'>
+                        
+                        <div class="form-groupo">
+                            <label class="checkbox-inline">
+                                {!! Form::checkbox('ativo', 1, ['checked'=>true] ) !!} Cadastro ativo. &nbsp
+                            </label>
+                            <label class="checkbox-inline">
+                                {!! Form::checkbox('e_lider', 1 ) !!} É lider de Célula. &nbsp
+                            </label>
+                        </div>
+
+                        <br />
+
+                        <div class="form-group">
+                            <label for="lider_id">Lider</label>
+                            <div>
+                                <input type="text" class="form-control" name="lider_id" id="lider_id" placeholder="" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="celula_id">Celula</label>
+                            <div>
+                                <input type="text" class="form-control" name="celula_id" id="celula_id" placeholder="" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="form-group">
 						<label for="name">Nome</label>
 						<div>
 							<input type="text" class="form-control" name="name" id="name" placeholder="Name">
@@ -76,17 +104,16 @@
                         </div>
 					</div>
 
-					<div class="form-group">
-						<label for="sexo">Sexo</label>
-                        <div>
-                            <div class="checkbox-inline">
-                                <input name="sexo" id="sexo" value="M" checked="" type="radio"> Sexo Masculino &nbsp &nbsp
-                            </div>
-
-                            <div class="checkbox-inline">
-                                <input name="sexo" id="sexo" value="F" type="radio"> Sexo Feminino
-                            </div>
-						</div>
+                    <label>Sexo</label>
+                    <div class="form-group">
+                        <label class="radio-inline">
+                            <input name="sexo" id="sexoM" value="M" type="radio">
+                            Sexo Masculino
+                        </label>
+                        <label class="radio-inline">
+                            <input name="sexo" id="sexoF" value="F" type="radio">
+                            Sexo Feminino
+                        </label>                          
 					</div>
 
                     <div class="form-group">
@@ -130,20 +157,15 @@
                             <input type="checkbox" name="encontro" id="encontro" value=1> Fez Encontro?
                         </label>
                         <label class="checkbox-inline">
-                                <input type="checkbox" name="escolaMinisterios" id="escolaMinisterios"> Fez a Escola de Ministérios?
+                                <input type="checkbox" name="escolaMinisterios" id="escolaMinisterios" value=1> Fez a Escola de Ministérios?
                         </label>
 
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="batismo" id="batismo"> É Batizado?
+                            <input type="checkbox" name="batismo" id="batismo" value=1> É Batizado?
                         </label>
                     </div>
 
-                     <div class="form-group has-success">
-                        <label class="checkbox-inline" for="ativo">
-                            {!! Form::checkbox('ativo', 1, ['checked'=>true] ) !!} Cadastro ativo.
-                                
-                        </label>
-                    </div>
+                     
 
 
 				</div>

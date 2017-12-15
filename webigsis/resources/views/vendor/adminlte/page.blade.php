@@ -109,6 +109,12 @@
 
             <!-- Content Header (Page header) -->
             <section class="content-header">
+                @if(session('alert'))
+                    <div class="alert alert-{{ session('alert_type') }} alert-dismissibl">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{ session('alert') }}
+                    </div>
+                @endif
                 @yield('content_header')
             </section>
 

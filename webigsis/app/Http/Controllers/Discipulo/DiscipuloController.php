@@ -46,25 +46,20 @@ class DiscipuloController extends Controller
         // Pega todos os dados que vem do formulário
         $dataForm = $request->all();
 
-        $dataForm['encontro'] = ( isset($dataForm['encontro']) ) ? 1 : 0;
-        $dataForm['escolaMinisterios'] = ( isset($dataForm['escolaMinisterios'])) ? 1 : 0;
-        $dataForm['batismo'] = ( isset($dataForm['batismo'])) ? 1 : 0;
-
-        /*if(isset($dataForm['nascimento_data']))
-            $dataForm['nascimento_data'] = date('Y-m-d', strtotime( str_replace('-', '/', $dataForm)));*/
-        
         // Faz o cadastro na base de dados
-        $insert = $this->discipulo->create($dataForm);
-        $discipulo_id = $insert->id;
-        $name = $insert->name;
+        $discipulo = $this->discipulo->create($dataForm);
+        $discipulo_id = $discipulo->id;
 
         
 
-        if( $insert ) 
-            //return view('discipulo.edit-add-endereco', compact('discipulo_id', 'name'));
-            return 'adicionado com sucesso';
+        if( $discipulo ) 
+            return redirect()
+                ->route('discipulo.show', $discipulo_id)
+                ->with(['alert'=>'Discipulo adicionado com sucesso.', 'alert_type'=>'danger']);
         else
-            return redirect()->route('discipulo.add')->with('data', 'Erro ao inserir');
+            return redirect()
+                ->route('discipulo.add')
+                ->with(['alert'=>'Erro ao inserir', 'alert_type'=>'danger']);
         
     }
 
@@ -77,7 +72,9 @@ class DiscipuloController extends Controller
      */
     public function show($id)
     {
-        //
+        $discipulo = Discipulo::find($id);
+        $lider = Discipulo::find($discipulo->lider_id);
+        return view('discipulo.view', compact('discipulo', 'lider'));
     }
 
     /**
