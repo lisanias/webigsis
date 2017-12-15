@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function() {
 Auth::routes();
 
 // discupulos
-Route::group(['namespace' => 'discipulo', 'middleware' => 'auth'], function() {
+Route::group(['namespace' => 'Discipulo', 'middleware' => 'auth'], function() {
 	Route::get('/discipulo','DiscipuloController@index')->name('discipulo');
 	Route::get('/discipulo/add','DiscipuloController@add')->name('discipulo.add');
 	Route::post('/discipulo/store','DiscipuloController@store')->name('discipulo.store');
