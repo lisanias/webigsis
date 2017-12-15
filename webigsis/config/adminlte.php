@@ -139,9 +139,14 @@ return [
             'icon' => 'group',
             'submenu' => [
                 [
-                    'text'  => 'Adicionar Discipulo',
-                    'url'   => 'discipulo/add',
+                    'text'  => 'Adicionar',
+                    'url'   => 'discipulo/create',
                     'icon'  => 'user-plus',
+                ],
+                [
+                    'text'  => 'Listar',
+                    'url'   => 'discipulo',
+                    'icon'  => 'list-alt',
                 ],
             ],
         ],

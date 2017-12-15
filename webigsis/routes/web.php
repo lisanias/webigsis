@@ -43,7 +43,6 @@ Auth::routes();
 // discupulos
 Route::group(['namespace' => 'Discipulo', 'middleware' => 'auth'], function() {
 	Route::get('/discipulo','DiscipuloController@index')->name('discipulo');
-	Route::get('/discipulo/add','DiscipuloController@add')->name('discipulo.add');
 	Route::post('/discipulo/store','DiscipuloController@store')->name('discipulo.store');
 	Route::post('/discipulo/storeAddress','EnderecoController@store')->name('discipulo.storeAddress');
 

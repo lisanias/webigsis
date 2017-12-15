@@ -31,4 +31,6 @@ class Discipulo extends Model
         'cep'
     ];
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    protected $dates = ['nascimento_data', 'batismo_data'];
 }

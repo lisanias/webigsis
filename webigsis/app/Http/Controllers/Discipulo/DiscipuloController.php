@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Discipulo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Discipulo;
+use App\Models\Telefone;
 
 class DiscipuloController extends Controller
 {
@@ -22,7 +23,8 @@ class DiscipuloController extends Controller
      */
     public function index()
     {
-        return 'Discipulo index - Listar discipulos';
+        $discipulos = Discipulo::all();
+        return view('discipulo.list', compact('discipulos'));
     }
 
     /**
@@ -32,7 +34,9 @@ class DiscipuloController extends Controller
      */
     public function create()
     {
-        //return view('discipulo.edit-add');
+        $recebidoModo = [1=>'Batismo', 2=>'Jurisdição'];
+        
+        return view('discipulo.edit-add', compact('recebidoModo'));
     }
 
     /**
@@ -57,8 +61,6 @@ class DiscipuloController extends Controller
         $discipulo = $this->discipulo->create($dataForm);
         $discipulo_id = $discipulo->id;
 
-        
-
         if( $discipulo ) 
             return redirect()
                 ->route('discipulo.show', $discipulo_id)
@@ -81,7 +83,18 @@ class DiscipuloController extends Controller
     {
         $discipulo = Discipulo::find($id);
         $lider = Discipulo::find($discipulo->lider_id);
-        return view('discipulo.view', compact('discipulo', 'lider'));
+        $telefones = Telefone::where('discipulo_id', $discipulo->id)->get();
+
+        switch($discipulo->sexo) {
+            case 'M':
+            $discipulo->sexo = "Masculino";
+            break;
+            case "F":
+            $discipulo->sexo = "Feminino";
+            break;
+        }
+
+        return view('discipulo.view', compact('discipulo', 'lider', 'telefones'));
     }
 
     /**
@@ -92,7 +105,7 @@ class DiscipuloController extends Controller
      */
     public function edit($id)
     {
-        //
+        return 'editar arquivo';
     }
 
     /**
@@ -115,18 +128,7 @@ class DiscipuloController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "apagar ".$id;
     }
 
-    public function add()
-    {
-        $recebidoModo = [1=>'Batismo', 2=>'Jurisdição'];
-
-        return view('discipulo.edit-add', compact('recebidoModo'));
-    }
-    public function add2($disipulo_id)
-    {
-        
-        //return view('discipulo.edit-add-2', compact('recebidoModo'));
-    }
 }
