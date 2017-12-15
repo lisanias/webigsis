@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title_postfix', ' | Adicionar usuário')
 
 @section('content_header')
     <h1>Usuário</h1>

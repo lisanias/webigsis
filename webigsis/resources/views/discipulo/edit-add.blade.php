@@ -1,4 +1,8 @@
-@extends('adminlte::page') @section('title', 'AdminLTE') @section('content_header')
+@extends('adminlte::page') 
+
+@section('title_prefix', 'Discipulo | ') 
+
+@section('content_header')
 <h1>Discipulo</h1>
 @stop @section('content') @if (session('data'))
 <div class="alert alert-success">
@@ -14,7 +18,7 @@
 
 			<!-- /.box-header -->
 			<!-- form start -->
-			<form class="form-horizontal form-label-left" method="POST" action="{{ route('discipulo.store') }}" id="discipulo-store"
+			<form class="form" method="POST" action="{{ route('discipulo.store') }}" id="discipulo-store"
 			 data-parsley-validate>
 
 				{{ csrf_field() }}
@@ -22,73 +26,130 @@
 				<div class="box-body">
 
 					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Nome</label>
-						<div class="col-sm-10">
+						<label for="name">Nome</label>
+						<div>
 							<input type="text" class="form-control" name="name" id="name" placeholder="Name">
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="email" class="col-sm-2 control-label">E-mail</label>
-						<div class="col-sm-10">
+						<label for="email">E-mail</label>
+						<div>
 							<input type="email" class="form-control" name="email" id="email" placeholder="Email">
 						</div>
 					</div>
 
+					<label>Endereço</label>
 					<div class="form-group">
-						<label for="sexo" class="col-sm-2 control-label">sexo</label>
-						<div class="radio">
-							<label>
-								<input name="sexo" id="sexo" value="M" checked="" type="radio"> Masculino
-							</label>
+                        <div class='row'>
+                            <div class="col-sm-8">
+                                {!! Form::text('logradouro', null, ['class'=>'form-control', 'placeholder'=>'Rua, Avenida, etc']) !!}
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                {!! Form::text('numero', null, ['class'=>'form-control', 'placeholder'=>'Número']) !!}
+                            </div>
+                        </div>
+					</div>
 
-							<label>
-								<input name="sexo" id="sexo" value="F" type="radio"> Feminino
-							</label>
-						</div>
+                    <div class="form-group">
+                        <div class='row'>
+                            <div class="col-sm-10">
+                                {!! Form::text('bairro', null, ['class'=>'form-control', 'placeholder'=>'Bairro']) !!}
+                            </div>
+                        </div>
+					</div>
+
+                    <div class="form-group">
+                        <div class='row'>
+                            <div class="col-sm-6">
+                                {!! Form::text('cidade', null, ['class'=>'form-control', 'placeholder'=>'Cidade']) !!}
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                {!! Form::text('uf', null, ['class'=>'form-control', 'placeholder'=>'UF']) !!}
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                {!! Form::text('cep', null, ['class'=>'form-control', 'placeholder'=>'CEP']) !!}
+                            </div>
+                        </div>
 					</div>
 
 					<div class="form-group">
-						<label for="nascimento_data" class="col-sm-2 control-label">Data de Nascimento</label>
-						<div class="col-sm-10">
-							<input type="date" class="form-control" name="nascimento_data" id="nascimento_data" placeholder="dia/mes/ano">
+						<label for="sexo">Sexo</label>
+                        <div>
+                            <div class="checkbox-inline">
+                                <input name="sexo" id="sexo" value="M" checked="" type="radio"> Sexo Masculino &nbsp &nbsp
+                            </div>
+
+                            <div class="checkbox-inline">
+                                <input name="sexo" id="sexo" value="F" type="radio"> Sexo Feminino
+                            </div>
 						</div>
 					</div>
 
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="encontro" id="encontro"> Fez Encontro?
-								</label>
-							</div>
-						</div>
+                    <div class="form-group">
+                        {!! Form::label('nascimento_data', 'Data de Nascimento', ['class'=>'control-label'])!!}
+                        <div class='row'>
+                            <div class="col-sm-3">
+                                {!! Form::date('nascimento_data', null, ['class'=>'form-control', 'placeholder'=>'dd/mm/yyyy']) !!}
+                            </div>
+                            <div class="col-sm-5">
+                                {!! Form::text('nascimento_cidade', null, ['class'=>'form-control', 'placeholder'=>'Cidade']) !!}
+                            </div>
+                            <div class="col-sm-2">
+                                {!! Form::text('nascimento_uf', null, ['class'=>'form-control', 'placeholder'=>'UF']) !!}
+                            </div>
+                        </div>
 					</div>
 
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="escolaMinisterios" id="escolaMinisterios"> Fez a Escola de Ministérios?
-								</label>
-							</div>
-						</div>
-					</div>
+                    <hr />
 
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="batismo" id="batismo"> É Batizado?
-								</label>
-							</div>
-						</div>
-					</div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label for="recebidoModo_id">Recebido modo</label>
+                                <div>
+                                    {!! Form::select('recebidoModo_id', $recebidoModo, null, ['class'=>'form-control'] ) !!}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="batismo_data">Data de Batismo</label>
+                                <div>
+                                    {!! Form::date('batismo_data', null, ['class'=>'form-control', 'placeholder'=>'Data em que foi batizado'] ) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="encontro" id="encontro" value=1> Fez Encontro?
+                        </label>
+                        <label class="checkbox-inline">
+                                <input type="checkbox" name="escolaMinisterios" id="escolaMinisterios"> Fez a Escola de Ministérios?
+                        </label>
+
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="batismo" id="batismo"> É Batizado?
+                        </label>
+                    </div>
+
+                     <div class="form-group has-success">
+                        <label class="checkbox-inline" for="ativo">
+                            {!! Form::checkbox('ativo', 1, ['checked'=>true] ) !!} Cadastro ativo.
+                                
+                        </label>
+                    </div>
+
 
 				</div>
 				<!-- /.box-body -->
 				<div class="box-footer">
-					<button type="submit" class="btn btn-info pull-right">Salvar</button>
+					<button type="submit" class="btn btn-info pull-right">Próximo</button>
 				</div>
 				<!-- /.box-footer -->
 			</form>

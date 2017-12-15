@@ -55,16 +55,20 @@ class DiscipuloController extends Controller
         
         // Faz o cadastro na base de dados
         $insert = $this->discipulo->create($dataForm);
+        $discipulo_id = $insert->id;
+        $name = $insert->name;
 
         
 
         if( $insert ) 
-            return redirect()->route('discipulo.add')->with('data', 'Inserido com sucesso');
+            //return view('discipulo.edit-add-endereco', compact('discipulo_id', 'name'));
+            return 'adicionado com sucesso';
         else
             return redirect()->route('discipulo.add')->with('data', 'Erro ao inserir');
         
     }
 
+   
     /**
      * Display the specified resource.
      *
@@ -112,6 +116,13 @@ class DiscipuloController extends Controller
 
     public function add()
     {
-        return view('discipulo.edit-add');
+        $recebidoModo = [1=>'Batismo', 2=>'Jurisdição'];
+
+        return view('discipulo.edit-add', compact('recebidoModo'));
+    }
+    public function add2($disipulo_id)
+    {
+        
+        //return view('discipulo.edit-add-2', compact('recebidoModo'));
     }
 }

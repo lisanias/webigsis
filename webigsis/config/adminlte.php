@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => 'Web<b>IG</b><small>sis</small> 2',
+    'logo' => "Web<b>IG</b><small><sub>sis</sub></small>",
 
-    'logo_mini' => '<b>W</b>2',
+    'logo_mini' => '<b>W<small><sub>S</sub></small></b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -130,6 +130,17 @@ return [
                 [
                     'text'  => 'Novo Usuário',
                     'url'   => 'register',
+                    'icon'  => 'user-plus',
+                ],
+            ],
+        ],
+        [ 
+            'text' => 'Discipulos',
+            'icon' => 'group',
+            'submenu' => [
+                [
+                    'text'  => 'Adicionar Discipulo',
+                    'url'   => 'discipulo/add',
                     'icon'  => 'user-plus',
                 ],
             ],
