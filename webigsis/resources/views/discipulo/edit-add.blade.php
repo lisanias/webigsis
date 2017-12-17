@@ -4,11 +4,9 @@
 
 @section('content_header')
 <h1>Discipulo</h1>
-@stop @section('content') @if (session('data'))
-<div class="alert alert-success">
-	{{ session('data') }}
-</div>
-@else
+@stop 
+
+@section('content')
 <div class='row'>
 	<div class="col-md-8">
 		<div class="box box-info">
@@ -178,4 +176,4 @@
 		</div>
 	</div>
 </div>
-@endif @endsection
+@endsection

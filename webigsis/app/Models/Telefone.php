@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Telefone extends Model
 {
-    //
+    protected $fillable = [
+        'discipulo_id',
+        'tipo',
+        'descricao',
+        'numero'
+    ];
+    
 }

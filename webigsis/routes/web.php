@@ -38,16 +38,15 @@ Route::group(['middleware' => 'auth'], function() {
 
 });
 
-Auth::routes();
 
 // discupulos
 Route::group(['namespace' => 'Discipulo', 'middleware' => 'auth'], function() {
-	Route::get('/discipulo','DiscipuloController@index')->name('discipulo');
-	Route::post('/discipulo/store','DiscipuloController@store')->name('discipulo.store');
-	Route::post('/discipulo/storeAddress','EnderecoController@store')->name('discipulo.storeAddress');
 
+	Route::get('telefone/{discipulo_id}/create', 'TelefoneController@create'); // para apagar
+	
 	Route::resource('discipulo', 'DiscipuloController');
-	//Route::get('/discipulo/{id}/add-2/','DiscipuloController@add2')->name('discipulo.add-2');
+	Route::resource('telefone', 'TelefoneController');
 });
 
 
+Auth::routes();

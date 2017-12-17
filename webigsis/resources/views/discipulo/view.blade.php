@@ -39,6 +39,9 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Endereço:</div>
                             <div class="panel-body">
+                                
+                                <!--  #####  ENDERECO  #####  -->
+
                                 <address style="margin-bottom: 0;">
                                     @if($discipulo->logradouro)
                                         {{$discipulo->logradouro}} 
@@ -64,21 +67,31 @@
                                 </address>
                             </div><!-- /.panel-body -->
                         </div><!-- /.panel-default -->
-                    </div>
-                
-                    <div class="col-md-6">
+                    
+                        <!--  #####  TELEFONES  #####  -->
+
                         <div class="panel panel-default">
                             <div class="panel-heading">Telefones</div>                        
                             <ul class="list-group">
                             @foreach($telefones as $telefone)
-                                <li class="list-group-item">{{ $telefone->tipo }} - {{ $telefone->numero }}
+                                <li class="list-group-item">
+                                    {{ $telefone->numero }} - {{ $telefone->tipo }} ({{ $telefone->descricao }})
+                                    <span class='pull-right'>
+                                        <a href="{{ route('telefone.edit', $telefone->id) }}" class="btn btn-info btn-xs"><span class="fa fa-edit"></span></a>
+                                        <a href="{{ route('telefone.show', $telefone->id) }}" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></a>
+                                        
+                                    </span>
+                                </li>
                             @endforeach
                             </ul>
+                            <div class="panel-footer">
+                                <a href="{{ route( 'telefone.create', ['id'=>$discipulo->id] ) }}" class="btn btn-success"><span class="fa fa-plus-square"></span> Adicionar número </a>
+                            </div>
                         </div>                        
                     </div>
-                </div><!-- /.row -->
 
-                <div class='row'>
+                    <!--  #####  DADOS PESSOAIS  #####  -->
+
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <table class="table">
@@ -131,9 +144,8 @@
                                 </tr>
                             </table>
                         </div><!-- /.panel -->
-                    </div><!-- /.col-md -->
-                
-                    <div class="col-md-6">
+                    
+                        <!--  #####  DADOS ECLESIÁSTICOS  #####  -->
 
                         <ul class="list-group">
                             <li class="list-group-item">        
@@ -193,11 +205,11 @@
             </div><!-- /.div-body -->
             <div class='box-footer'>
                 
-                        <a href="{{ route("discipulo.edit", $discipulo->id) }}" class="btn btn-primary"><i class="fa fa-edit m-right-xs"> </i> Editar</a>
+                        <a href="{{ route('discipulo.edit', $discipulo->id) }}" class="btn btn-primary"><i class="fa fa-edit m-right-xs"> </i> Editar</a>
                         
                         @if($discipulo->user_id)
-                                <a href="{{ route("user.show", $discipulo->id) }}" class="btn btn-warning"><i class="fa fa-user m-right-xs"> </i> Usuário ADM </a>
-                            @endif
+                            <a href="{{ route('user.show', $discipulo->id) }}" class="btn btn-warning"><i class="fa fa-user m-right-xs"> </i> Usuário ADM </a>
+                        @endif
             </div>
 			
 		</div>

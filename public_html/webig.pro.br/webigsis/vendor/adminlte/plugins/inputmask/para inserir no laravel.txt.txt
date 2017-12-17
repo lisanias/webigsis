@@ -1,0 +1,6 @@
+@section('js')
+    <script src="{{ asset('vendor/adminlte/plugins/inputmask/jquery.inputmask.js') }}"></script>
+    <script src="{{ asset('vendor/adminlte/plugins/inputmask/inputmask.date.extensions.js') }}"></script>
+    <script src="{{ asset('vendor/adminlte/plugins/inputmask/inputmask.extensions.js') }}"></script>
+    <script src="{{ asset('vendor/adminlte/plugins/inputmask/inputmask.phone.extensions.js') }}"></script>
+@stop  

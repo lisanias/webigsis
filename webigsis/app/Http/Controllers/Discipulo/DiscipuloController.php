@@ -34,7 +34,7 @@ class DiscipuloController extends Controller
      */
     public function create()
     {
-        $recebidoModo = [1=>'Batismo', 2=>'Jurisdição'];
+        $recebidoModo = [''=>'Não Membro', 1=>'Batismo', 2=>'Jurisdição'];
         
         return view('discipulo.edit-add', compact('recebidoModo'));
     }

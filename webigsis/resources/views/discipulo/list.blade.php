@@ -34,7 +34,6 @@
                             <td>
                                 <a href="{{ route('discipulo.show', $discipulo->id) }}" class="btn btn-success btn-xs"><span class="fa fa-check"></span></a>
                                 <a href="{{ route('discipulo.edit', $discipulo->id) }}" class="btn btn-info btn-xs"><span class="fa fa-edit"></span></a>
-                                <a href="{{ route('discipulo.destroy', $discipulo->id) }}" class="btn btn-danger btn-xs"><span class="fa fa-trash-o"></span></a>
                             </td>
                         </tr>
                     @endforeach
