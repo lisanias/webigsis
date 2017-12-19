@@ -11,7 +11,7 @@
 	<div class="col-md-12">
 		<div class="box box-info">
 			<div class="box-header with-border">
-				<h3 class="box-title">Ficha de Discipulo</h3>
+				<h3 class="box-title"><span class="fa fa-group"></span> Ficha de Discipulo</h3>
                 <span class="pull-right">
                     @if($discipulo->ativo==1)
                         <span class='label label-success'>Ativo</span>
@@ -75,7 +75,10 @@
                             <ul class="list-group">
                             @foreach($telefones as $telefone)
                                 <li class="list-group-item">
-                                    {{ $telefone->numero }} - {{ $telefone->tipo }} ({{ $telefone->descricao }})
+                                    <span class="fa fa-phone"></span>
+                                    {{ $telefone->numero }} 
+                                    @if($telefone->tipo)- {{ $telefone->tipo }} @endif
+                                    @if($telefone->descricao) ({{ $telefone->descricao }})@endif
                                     <span class='pull-right'>
                                         <a href="{{ route('telefone.edit', $telefone->id) }}" class="btn btn-info btn-xs"><span class="fa fa-edit"></span></a>
                                         <a href="{{ route('telefone.show', $telefone->id) }}" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></a>
@@ -100,7 +103,7 @@
                                         Sexo: 
                                     </td>
                                     <td>
-                                        <span class="label label-default"> {{ $discipulo->sexo }} </span>
+                                        <span class="label label-default"> {{ $discipulo->sexo or '?' }} </span>
                                     </td>
                                 </tr>
                                 
@@ -109,7 +112,12 @@
                                         Data de Nascimento:
                                     </td>
                                     <td>
-                                        {{ $discipulo->nascimento_data->format('d-m-Y') }}
+                                        @if( !$discipulo->nascimento_data == null)
+                                            {{$discipulo->nascimento_data->format('d/m/Y')}}
+                                        @else
+                                            <span class="glyphicon glyphicon-question-sign nao" aria-hidden="true"></span> Sem data de nascimento
+                                        @endif
+                                        
                                     </td>
                                 </tr>
 

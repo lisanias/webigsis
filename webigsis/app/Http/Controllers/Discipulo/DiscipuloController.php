@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Discipulo;
 use App\Models\Telefone;
+use App\Http\Requests\Discipulo\DiscipuloFormRequest;
 
 class DiscipuloController extends Controller
 {
@@ -35,8 +36,11 @@ class DiscipuloController extends Controller
     public function create()
     {
         $recebidoModo = [''=>'Não Membro', 1=>'Batismo', 2=>'Jurisdição'];
+
+        $lideres = Discipulo::get()
+            ->where("e_lider", 1);
         
-        return view('discipulo.edit-add', compact('recebidoModo'));
+        return view('discipulo.edit-add', compact('recebidoModo', 'lideres'));
     }
 
     /**
@@ -45,17 +49,10 @@ class DiscipuloController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DiscipuloFormRequest $request)
     {
         // Pega todos os dados que vem do formulário
         $dataForm = $request->all();
-
-        /**
-         * Campos que não podem ser null 
-         * 
-         * $dataForm['batismo'] = ( isset($dataForm['sexo'])) ? 1 : 0;
-         */
-        
 
         // Faz o cadastro na base de dados
         $discipulo = $this->discipulo->create($dataForm);
@@ -63,8 +60,10 @@ class DiscipuloController extends Controller
 
         if( $discipulo ) 
             return redirect()
-                ->route('discipulo.show', $discipulo_id)
-                ->with(['alert'=>'Discipulo adicionado com sucesso.', 'alert_type'=>'success']);
+                ->route( 'telefone.create', ['id'=>$discipulo_id] )
+                ->with(['alert'=>'Discipulo criado com sucesso! Adicione agora o telefone.', 'alert_type'=>'success']);
+                /*->route('discipulo.show', $discipulo_id)
+                ->with(['alert'=>'Discipulo adicionado com sucesso.', 'alert_type'=>'success']);*/
         else
             return redirect()
                 ->route('discipulo.add')
@@ -132,3 +131,4 @@ class DiscipuloController extends Controller
     }
 
 }
+

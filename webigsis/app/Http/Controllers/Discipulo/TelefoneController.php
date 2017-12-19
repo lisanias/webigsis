@@ -56,14 +56,14 @@ class TelefoneController extends Controller
         // Pega todos os dados que vem do formulário
         $dataForm = $request->all();
 
-        // Valida os dados enviados
-        /*$this->validate($request, $this->telefone->rules);*/
+        
 
         $telefone = $this->telefone->create($dataForm);
 
         if( $telefone ) 
             if($request->add_outro)
-                return redirect("/".$request->discipulo_id."/telefone")
+                return redirect()
+                    ->route( 'telefone.create', ['id'=>$request->discipulo_id] )
                     ->with(['alert'=>'Telefone adicionado com sucesso.', 'alert_type'=>'success']);
             else
             return redirect()
@@ -96,7 +96,13 @@ class TelefoneController extends Controller
     {
         $telefone = Telefone::find($id);
         
-        return view('discipulo.telefone.telefone', compact('telefone') );
+        /**
+         * o id que veio é o id do telefone
+         * agora o id passa ser o do discipulo para enviar para a pagina
+         */
+        $id = $telefone->discipulo_id;
+        
+        return view('discipulo.telefone.telefone', compact('telefone', 'id') );
     }
 
     /**
@@ -111,6 +117,9 @@ class TelefoneController extends Controller
         // Pega os dados do formulário
         $dataForm = $request->all();
 
+        // Formata o numero
+        //$dataForm['numero'] = formataNumero($dataForm['numero']);
+ 
         //Localiza o telefone na base de dados
         $telefone = $this->telefone->find($id);
 
@@ -138,7 +147,7 @@ class TelefoneController extends Controller
     {
         //procurar o arquivo a ser apagado para pegar o id do dicipulo para voltar nele
         $telefone = $this->telefone->find($id);
-        $return_id = $this->telefone->discipulo_id;
+        $return_id = $telefone->discipulo_id;
 
         $delete = Telefone::destroy($id);
 
@@ -151,4 +160,39 @@ class TelefoneController extends Controller
                 ->route('telefone.edit', $id )
                 ->with(['alert'=>'Não foi possivel gravar os dados!', 'alert_type'=>'danger']);
     }
+
+    
 }
+
+/*
+function formataNumero($str) {
+    
+        $str = preg_replace("/[^0-9]/", "", $str);
+     
+        switch (strlen($str)) {
+            case 8:
+                $subStr2 = substr($str, 4);
+                $subStr1 = substr($str, 0, 4);
+                $str = $subStr1.'-'.$subStr2;
+                break;
+            case 9:
+                $subStr2 = substr($str, 5);
+                $subStr1 = substr($str, 0, 5);
+                $str = $subStr1.'-'.$subStr2;
+                break;
+            case 10:
+                $subStr2 = substr($str, 6);
+                $subStr1 = substr($str, 2, 4);
+                $subStr0 = substr($str, 0, 2);
+                $str = '('.$subStr0.') '.$subStr1.'-'.$subStr2;
+                break;
+            case 11:
+                $subStr2 = substr($str, 7);
+                $subStr1 = substr($str, 2, 5);
+                $subStr0 = substr($str, 0, 2);
+                $str = '('.$subStr0.') '.$subStr1.'-'.$subStr2;
+                break;
+        }
+    
+        return $str;
+    }*/

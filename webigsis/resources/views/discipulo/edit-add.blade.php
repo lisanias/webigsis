@@ -7,8 +7,20 @@
 @stop 
 
 @section('content')
+
 <div class='row'>
 	<div class="col-md-8">
+
+        @if( isset($errors) && count($errors)>0 )
+            <div class="alert alert-danger">
+                <ul>
+                @foreach ( $errors->all() as $error )
+                    <li>{{$error}}</li>
+                @endforeach
+                </ul>
+            </div>
+        @endif
+
 		<div class="box box-info">
 			<div class="box-header with-border">
 				<h3 class="box-title">Adicionar discipulo</h3>
@@ -39,14 +51,46 @@
                         <div class="form-group">
                             <label for="lider_id">Lider</label>
                             <div>
-                                <input type="text" class="form-control" name="lider_id" id="lider_id" placeholder="" disabled>
+                                <select name='lider' class="form-control">
+                                    <option value=''>Escolha um lider de Célula</option>
+                                    <option value=''>Sem lider de celula</option>
+                                    @foreach ($lideres as $lider)
+                                        <option value="{{ $lider->id }}">{{ $lider->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label for="celula_id">Celula</label>
-                            <div>
-                                <input type="text" class="form-control" name="celula_id" id="celula_id" placeholder="" disabled>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label for="recebidoModo_id">Recebido modo</label>
+                                    <div>
+                                        {!! Form::select('recebidoModo_id', $recebidoModo, null, ['class'=>'form-control'] ) !!}
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label for="batismo_data">Data de Batismo</label>
+                                    <div>
+                                        {!! Form::date('batismo_data', null, ['class'=>'form-control', 'placeholder'=>'Data em que foi batizado'] ) !!}
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="encontro" id="encontro" value=1> Fez Encontro?
+                            </label>
+                            <label class="checkbox-inline">
+                                    <input type="checkbox" name="escolaMinisterios" id="escolaMinisterios" value=1> Fez a Escola de Ministérios?
+                            </label>
+
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="batismo" id="batismo" value=1> É Batizado?
+                            </label>
                         </div>
 
                     </div>
@@ -131,37 +175,7 @@
 
                     <hr />
 
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <label for="recebidoModo_id">Recebido modo</label>
-                                <div>
-                                    {!! Form::select('recebidoModo_id', $recebidoModo, null, ['class'=>'form-control'] ) !!}
-                                </div>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <label for="batismo_data">Data de Batismo</label>
-                                <div>
-                                    {!! Form::date('batismo_data', null, ['class'=>'form-control', 'placeholder'=>'Data em que foi batizado'] ) !!}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="encontro" id="encontro" value=1> Fez Encontro?
-                        </label>
-                        <label class="checkbox-inline">
-                                <input type="checkbox" name="escolaMinisterios" id="escolaMinisterios" value=1> Fez a Escola de Ministérios?
-                        </label>
-
-                        <label class="checkbox-inline">
-                            <input type="checkbox" name="batismo" id="batismo" value=1> É Batizado?
-                        </label>
-                    </div>
+                    
 
                      
 

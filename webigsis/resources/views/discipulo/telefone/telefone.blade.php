@@ -1,13 +1,14 @@
 @extends('discipulo.base')
 
 @section('title_header')
-    <h3 class="box-title">Telefones</h3>
+    <h3 class="box-title"><span class="fa fa-phone"></span> Telefones</h3>
 @if ( isset($telefone) )
     <div class="pull-right">   
     
         {!! Form::open(['route' => ['telefone.destroy', $telefone->id], 'method' => 'DELETE']) !!}
-            {!! Form::submit("Apagar este número", ['class' => 'btn btn-danger btn-xs', 'title' => 'Atenção, esta ação apaga permanentemente']) !!}    
-        {!! Form::close() !!}
+            {!! Form::button("<span class='fa fa-remove'></span> Apagar este número", ['type'=>'input', 'class' => 'btn btn-danger btn-xs', 'title' => 'Atenção, esta ação apaga permanentemente']) !!}    
+           
+        {!! Form::close() !!} 
     
     </div>
 @endif
@@ -28,20 +29,20 @@
     @if ( isset($telefone) )
         <form class="form" method="POST" action="{{ route('telefone.update', $telefone->id) }}" id="telefone-update" data-parsley-validate>
             {!! method_field('PUT') !!}
-            {!! Form::hidden('discipulo_id', $telefone->discipulo_id) !!}
     @else
         <form class="form" method="POST" action="{{ route('telefone.store') }}" id="telefone-store" data-parsley-validate>
-            {!! Form::hidden('discipulo_id', $id) !!}
     @endif
 
         {{ csrf_field() }}
+        
+        {!! Form::hidden('discipulo_id', $id) !!}
 
         <div class="panel-body">
 
         
             <div class="col-sm-4">
                 {!! Form::label('numero', 'Telefone') !!} 
-                {!! Form::text('numero', (isset($telefone))?$telefone->numero:old('numero'), [
+                {!! Form::tel('numero', (isset($telefone))?$telefone->numero:old('numero'), [
                     'id'=>'numero', 
                     'class'=>'form-control', 
                     'placeholder'=>'DDD + Numero'
@@ -64,7 +65,7 @@
         </div><!-- ./panel-body  -->
 
         <div class="panel-footer">
-            <button type="reset" class="btn btn-default">Cancelar</button>
+            <button type="reset" class="btn btn-default"><span class="fa fa-refresh"></span> Resetar</button>
             
             <div class='pull-right'>
                 @if ( !isset($telefone) )
@@ -74,7 +75,8 @@
                       </label>
                     </div>
                 @endif
-                <button type="submit" class="btn btn-primary" style="margin-left:10px;">Salvar</button>
+                <button type="submit" class="btn btn-primary" style="margin-left:10px;"><span class="fa fa-save"></span> Salvar</button>
+                <a href="{{ route('discipulo.show', $id)}}" class="btn btn-success"><span class="fa fa-user-circle"></span> Ver Ficha</a>
             </div>
         </div><!-- ./panel-footer  -->
 
