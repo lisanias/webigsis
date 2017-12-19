@@ -37,9 +37,13 @@ class DiscipuloController extends Controller
     {
         $recebidoModo = [''=>'Não Membro', 1=>'Batismo', 2=>'Jurisdição'];
 
-        $lideres = Discipulo::get()
-            ->where("e_lider", 1);
-        
+        $lideres = Discipulo::orderBy('name')
+            ->get()
+            ->where('e_lider', 1)
+            ->pluck('name', 'id');
+      
+        //dd($lideres);
+
         return view('discipulo.edit-add', compact('recebidoModo', 'lideres'));
     }
 
@@ -104,7 +108,16 @@ class DiscipuloController extends Controller
      */
     public function edit($id)
     {
-        return 'editar arquivo';
+        $discipulo = Discipulo::find($id);
+
+        $lideres = Discipulo::orderBy('name')
+                ->get()
+                ->where('e_lider', 1)
+                ->pluck('name', 'id');
+
+        $recebidoModo = [''=>'Não Membro', 1=>'Batismo', 2=>'Jurisdição'];
+        
+        return view('discipulo.edit-add', compact('discipulo', 'lideres', 'recebidoModo'));
     }
 
     /**
@@ -114,9 +127,25 @@ class DiscipuloController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DiscipuloFormRequest $request, $id)
     {
-        //
+        // Pega os dados do formulário
+        $dataForm = $request->all();
+        
+        //Localiza o discipulo na base de dados
+        $discipulo = $this->discipulo->find($id);
+
+        // Atualiza a base de dados
+        $update = $discipulo->update($dataForm);
+        
+        if( $update )
+            return redirect()
+                ->route( 'discipulo.show', $discipulo->id )
+                ->with(['alert'=>'Discipulo atualizado!', 'alert_type'=>'success']);
+        else
+            return redirect()
+                ->route('discipulo.edit', $id )
+                ->with(['alert'=>'Não foi possivel gravar os dados!', 'alert_type'=>'danger']);
     }
 
     /**
@@ -127,7 +156,16 @@ class DiscipuloController extends Controller
      */
     public function destroy($id)
     {
-        return "apagar ".$id;
+        $delete = Discipulo::destroy($id);
+        
+                if( $delete )
+                    return redirect()
+                        ->route( 'discipulo.index')
+                        ->with(['alert'=>"Dicipulo apagado com sucesso. <small>[Ref. ID:{{$id}}]</small>", 'alert_type'=>'success']);
+                else
+                    return redirect()
+                        ->route('discipulo.show', $id )
+                        ->with(['alert'=>'Não foi possivel apagar este discipulo!', 'alert_type'=>'danger']);
     }
 
 }

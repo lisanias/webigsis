@@ -11,14 +11,28 @@
 	<div class="col-md-12">
 		<div class="box box-info">
 			<div class="box-header with-border">
-				<h3 class="box-title"><span class="fa fa-group"></span> Ficha de Discipulo</h3>
-                <span class="pull-right">
+				<h3 class="box-title"><i class="fa fa-group"></i> Ficha de Discipulo</h3>
+                <div class="pull-right">
                     @if($discipulo->ativo==1)
-                        <span class='label label-success'>Ativo</span>
+                        <i class='label label-success'>Ativo</i>
                     @else
-                        <span class='label label-danger'>Inativo</span>
+                        <i class='label label-danger'>Inativo</i>
                     @endif
-                </span>
+                </div>
+			</div>
+
+            <div class="box-header with-border">
+                <div class="pull-right">
+                    {!! Form::open(['route' => ['discipulo.destroy', $discipulo->id], 'method' => 'DELETE']) !!}
+                        {!! Form::button("<i class='fa fa-remove'></i><span class='hidden-xs'> Deletar </span>", ['type'=>'input', 'class' => 'btn btn-danger', 'title' => 'Atenção, esta ação apaga permanentemente']) !!}
+                    {!! Form::close() !!} 
+                </div>
+                <a class='btn btn-info' href='{{ url()->previous() }}'> <i class="fa  fa-arrow-circle-o-left"></i><span class='hidden-xs'> Voltar </span></a>
+                <a href="{{ route('discipulo.edit', $discipulo->id) }}" class="btn btn-primary"><i class="fa fa-edit m-right-xs"> </i><span class='hidden-xs'> Editar </span></a>
+                <a href="{{ route('discipulo.index') }}" class="btn btn-success"><i class="fa fa-fw fa-list-alt m-right-xs"> </i><span class='hidden-xs'> Listar </span></a>
+                @if($discipulo->user_id)
+                    <a href="{{ route('user.show', $discipulo->id) }}" class="btn btn-warning"><i class="fa fa-user m-right-xs"> </i><span class='hidden-xs'> Usuário ADM </span></a>
+                @endif
 			</div>
 
 			<!-- /.box-header -->
@@ -75,20 +89,20 @@
                             <ul class="list-group">
                             @foreach($telefones as $telefone)
                                 <li class="list-group-item">
-                                    <span class="fa fa-phone"></span>
+                                    <i class="fa fa-phone"></i>
                                     {{ $telefone->numero }} 
                                     @if($telefone->tipo)- {{ $telefone->tipo }} @endif
                                     @if($telefone->descricao) ({{ $telefone->descricao }})@endif
-                                    <span class='pull-right'>
+                                    <div class='pull-right'>
                                         <a href="{{ route('telefone.edit', $telefone->id) }}" class="btn btn-info btn-xs"><span class="fa fa-edit"></span></a>
                                         <a href="{{ route('telefone.edit', $telefone->id) }}" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></a>
                                         
-                                    </span>
+                                    </div>
                                 </li>
                             @endforeach
                             </ul>
                             <div class="panel-footer">
-                                <a href="{{ route( 'telefone.create', ['id'=>$discipulo->id] ) }}" class="btn btn-success"><span class="fa fa-plus-square"></span> Adicionar número </a>
+                                <a href="{{ route( 'telefone.create', ['id'=>$discipulo->id] ) }}" class="btn btn-success"><i class="fa fa-plus-square"></i> Adicionar número </a>
                             </div>
                         </div>                        
                     </div>
@@ -103,7 +117,7 @@
                                         Sexo: 
                                     </td>
                                     <td>
-                                        <span class="label label-default"> {{ $discipulo->sexo or '?' }} </span>
+                                        <i class="label label-default"> {{ $discipulo->sexo or '?' }} </i>
                                     </td>
                                 </tr>
                                 
@@ -115,7 +129,7 @@
                                         @if( !$discipulo->nascimento_data == null)
                                             {{$discipulo->nascimento_data->format('d/m/Y')}}
                                         @else
-                                            <span class="glyphicon glyphicon-question-sign nao" aria-hidden="true"></span> Sem data de nascimento
+                                            <i class="glyphicon glyphicon-question-sign nao" aria-hidden="true"></i> Sem data de nascimento
                                         @endif
                                         
                                     </td>
@@ -158,10 +172,10 @@
                         <ul class="list-group">
                             <li class="list-group-item">        
                                 @if($discipulo->e_lider==1)
-                                        <span class="glyphicon glyphicon-ok-circle sim" aria-hidden="true"></span>
+                                        <i class="glyphicon glyphicon-ok-circle sim" aria-hidden="true"></i>
                                         É lider de celula
                                     @else 
-                                        <span class="glyphicon glyphicon-remove-circle nao" aria-hidden="true"></span>
+                                        <i class="glyphicon glyphicon-remove-circle nao" aria-hidden="true"></i>
                                         Não lidera celula.
                                 @endif
                             </li>
@@ -170,40 +184,40 @@
                                 @if($lider)
                                         Discipulado por {{$lider->name}}
                                     @else 
-                                        <span class="glyphicon glyphicon-remove-sign nao" aria-hidden="true"></span>
+                                        <i class="glyphicon glyphicon-remove-sign nao" aria-hidden="true"></i>
                                         Não tem um discipulador cadastrado.
                                 @endif
                             </li>
 
                             <li class="list-group-item">
                                 @if($discipulo->encontro==1)
-                                        <span class="glyphicon glyphicon-ok-circle sim" aria-hidden="true"></span> Fez o Encontro com Deus
+                                        <i class="glyphicon glyphicon-ok-circle sim" aria-hidden="true"></i> Fez o Encontro com Deus
                                     @elseif($discipulo->encontro===0)
-                                        <span class="glyphicon glyphicon-remove-circle nao" aria-hidden="true"></span> Não participou de um Encontro com Deus
+                                        <i class="glyphicon glyphicon-remove-circle nao" aria-hidden="true"></i> Não participou de um Encontro com Deus
                                     @else
-                                        <span class="fa fa-question-circle nao" aria-hidden="true"></span> Não informado sobre o Encontro com Deus
+                                        <i class="fa fa-question-circle nao" aria-hidden="true"></i> Não informado sobre o Encontro com Deus
                                 @endif
                             </li>
                             <li class="list-group-item">
                                 @if($discipulo->escolaMinisterios==1)
-                                        <span class="glyphicon glyphicon-ok-circle sim" aria-hidden="true"></span> Concluiu a Escola de Ministérios Didake
+                                        <i class="glyphicon glyphicon-ok-circle sim" aria-hidden="true"></i> Concluiu a Escola de Ministérios Didake
                                     @elseif($discipulo->escolaMinisterios===0)
-                                        <span class="glyphicon glyphicon-remove-circle nao" aria-hidden="true"></span> Não concluiu a Escola de Ministérios Didake
+                                        <i class="glyphicon glyphicon-remove-circle nao" aria-hidden="true"></i> Não concluiu a Escola de Ministérios Didake
                                     @else
-                                        <span class="fa fa-question-circle nao" aria-hidden="true"></span> Não foi informado sobre a Escola de Ministérios Didake
+                                        <i class="fa fa-question-circle nao" aria-hidden="true"></i> Não foi informado sobre a Escola de Ministérios Didake
                                 @endif
                             </li>
                             <li class="list-group-item">
                                 @if($discipulo->batismo==1)
-                                        <span class="glyphicon glyphicon-ok-circle sim" aria-hidden="true"></span> É Batizado
+                                        <i class="glyphicon glyphicon-ok-circle sim" aria-hidden="true"></i> É Batizado
                                         @if($discipulo->batismo_data)
                                             - Data do Batismo: {{ $discipulo->batismo_data->format('d/m/Y') }}
                                         @endif
                                         
                                     @elseif($discipulo->batismo===0)
-                                        <span class="glyphicon glyphicon-remove-circle nao" aria-hidden="true"></span> Não é batizado
+                                        <i class="glyphicon glyphicon-remove-circle nao" aria-hidden="true"></i> Não é batizado
                                     @else
-                                        <span class="fa fa-question-circle nao" aria-hidden="true"></span> Não foi informado sobre o batismo
+                                        <i class="fa fa-question-circle nao" aria-hidden="true"></i> Não foi informado sobre o batismo
                                 @endif
                             </li>
                         </ul>
@@ -212,12 +226,7 @@
                 </div><!-- /.row -->
             </div><!-- /.div-body -->
             <div class='box-footer'>
-                
-                        <a href="{{ route('discipulo.edit', $discipulo->id) }}" class="btn btn-primary"><i class="fa fa-edit m-right-xs"> </i> Editar</a>
-                        
-                        @if($discipulo->user_id)
-                            <a href="{{ route('user.show', $discipulo->id) }}" class="btn btn-warning"><i class="fa fa-user m-right-xs"> </i> Usuário ADM </a>
-                        @endif
+
             </div>
 			
 		</div>

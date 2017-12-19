@@ -1,39 +1,31 @@
-@extends('adminlte::page') 
+@extends('discipulo._base')
 
-@section('title_prefix', 'Discipulo | ') 
 
-@section('content_header')
-<h1>Discipulo</h1>
-@stop 
+@section('title_header')
+    <h3 class="box-title"><span class="fa fa-user-circle-o"></span> @if(isset($discipulo)) Editar @else Adicionar @endif discipulo</h3>
+@endsection 
 
-@section('content')
 
-<div class='row'>
-	<div class="col-md-8">
 
-        @if( isset($errors) && count($errors)>0 )
-            <div class="alert alert-danger">
-                <h3><span class="fa  fa-exclamation-triangle"></span> Atenção</h3>
-                <p><strong>Encontramos os seguintes erros no preenchimento do formulário:</strong></p><hr />
-                <ul>
-                @foreach ( $errors->all() as $error )
-                    <li>{{$error}}</li>
-                @endforeach
-                </ul>
+@section('content_body')
+
+<div class="panel panel-default" style="margin-bottom: 0;">
+
+    <div class="box-body">
+        <div class="panel panel-@if(isset($discipulo)) panel-info @else panel-warning @endif" style="margin-bottom: 0;">
+            <div class="panel-heading">
+                <h3 class="profile-username text-center "> {{$discipulo->name or 'Inserir discipulo'}} </h3>
             </div>
+        </div>
+    </div>
+
+
+    <!-- form start -->
+        @if(isset($discipulo))
+            {!! Form::model($discipulo, ['route' => ['discipulo.update', $discipulo->id], 'class'=>'form',' data-parsley-validate', 'method'=>'put'] ) !!}
+        @else	
+            {!! Form::open( ['route' => 'discipulo.store', 'class'=>'form',' data-parsley-validate'] ) !!}
         @endif
-
-		<div class="box box-info">
-			<div class="box-header with-border">
-				<h3 class="box-title">Adicionar discipulo</h3>
-			</div>
-
-			<!-- /.box-header -->
-			<!-- form start -->
-			<form class="form" method="POST" action="{{ route('discipulo.store') }}" id="discipulo-store"
-			 data-parsley-validate>
-
-				{{ csrf_field() }}
 
 				<div class="box-body">
 
@@ -51,31 +43,29 @@
                         <br />
 
                         <div class="form-group">
-                            <label for="lider_id">Lider</label>
+                            {!! Form::label('lider_id', 'Lider') !!}
                             <div>
-                                <select name='lider' class="form-control">
-                                    <option value=''>Escolha um lider de Célula</option>
-                                    <option value=''>Sem lider de celula</option>
-                                    @foreach ($lideres as $lider)
-                                        <option value="{{ $lider->id }}">{{ $lider->name }}</option>
-                                    @endforeach
-                                </select>
+                                {!! Form::select('lider_id', $lideres, null, ['placeholder'=>'Escola um lider de celula', 'class'=>'form-control'] ) !!}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <label for="recebidoModo_id">Recebido modo</label>
+                                    {!! Form::label('recebidoModo_id', 'Recebido Modo') !!}
                                     <div>
                                         {!! Form::select('recebidoModo_id', $recebidoModo, null, ['class'=>'form-control'] ) !!}
                                     </div>
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label for="batismo_data">Data de Batismo</label>
+                                    {!! Form::label('batismo_data', 'Data de Batismo') !!}
                                     <div>
-                                        {!! Form::date('batismo_data', null, ['class'=>'form-control', 'placeholder'=>'Data em que foi batizado'] ) !!}
+                                        @if( isset($discipulo) )
+                                            {!! Form::date('batismo_data', $discipulo->batismo_data, ['class'=>'form-control data', 'placeholder'=>'Data em que foi batizado'] ) !!}
+                                        @else
+                                            {!! Form::date('batismo_data', null, ['class'=>'form-control data', 'placeholder'=>'Data em que foi batizado'] ) !!}
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -83,31 +73,57 @@
 
 
                         <div class="form-group">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="encontro" id="encontro" value=1> Fez Encontro?
-                            </label>
-                            <label class="checkbox-inline">
-                                    <input type="checkbox" name="escolaMinisterios" id="escolaMinisterios" value=1> Fez a Escola de Ministérios?
-                            </label>
+                            <span class="visible-sm-block visible-md-block visible-lg-block">
+                                <div class='checkbox'>
+                                    <label class="checkbox-inline">
+                                        {!! Form::checkbox('encontro', '1') !!} 
+                                        Fez Encontro?
+                                    </label>
 
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="batismo" id="batismo" value=1> É Batizado?
-                            </label>
+                                    <label class="checkbox-inline">
+                                        {!! Form::checkbox('escolaMinisterios', '1') !!}
+                                        Fez a Escola de Ministérios? 
+                                    </label>
+
+                                    <label class="checkbox-inline">
+                                        {!! Form::checkbox('batismo', '1') !!}
+                                        É Batizado?
+                                    </label>
+                                </div>
+                            </span>
+                            <span class="visible-xs-block">
+                                <div class='checkbox'>
+                                    <label class="checkbox">
+                                        {!! Form::checkbox('encontro', '1') !!} 
+                                        Fez Encontro?
+                                    </label>
+
+                                    <label class="checkbox">
+                                        {!! Form::checkbox('escolaMinisterios', '1') !!}
+                                        Fez a Escola de Ministérios? 
+                                    </label>
+
+                                    <label class="checkbox">
+                                        {!! Form::checkbox('batismo', '1') !!}
+                                        É Batizado?
+                                    </label>
+                                </div>
+                            </span>
                         </div>
 
                     </div>
                     
                     <div class="form-group">
-						<label for="name">Nome</label>
+						{!! Form::label('name', 'Nome') !!}
 						<div>
-							<input type="text" class="form-control" name="name" id="name" placeholder="Name">
+							{!! Form::text( 'name', null, ['class'=>'form-control', 'placeholder'=>'Nome'] ) !!}
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="email">E-mail</label>
+						{!! Form::label('email', 'E-mail') !!}
 						<div>
-							<input type="email" class="form-control" name="email" id="email" placeholder="Email">
+							{!! Form::text( 'email', null, ['class'=>'form-control', 'placeholder'=>'email@dominio.com'] ) !!}
 						</div>
 					</div>
 
@@ -151,11 +167,11 @@
                     <label>Sexo</label>
                     <div class="form-group">
                         <label class="radio-inline">
-                            <input name="sexo" id="sexoM" value="M" type="radio">
+                            {!! Form::radio('sexo', 'M') !!}
                             Sexo Masculino
                         </label>
                         <label class="radio-inline">
-                            <input name="sexo" id="sexoF" value="F" type="radio">
+                            {!! Form::radio('sexo', 'F') !!}
                             Sexo Feminino
                         </label>                          
 					</div>
@@ -164,7 +180,11 @@
                         {!! Form::label('nascimento_data', 'Data de Nascimento', ['class'=>'control-label'])!!}
                         <div class='row'>
                             <div class="col-sm-3">
-                                {!! Form::date('nascimento_data', null, ['class'=>'form-control', 'placeholder'=>'dd/mm/yyyy']) !!}
+                                @if( isset($discipulo) )
+                                    {!! Form::date('nascimento_data', $discipulo->nascimento_data, ['class'=>'form-control data', 'placeholder'=>'dd/mm/yyyy'] ) !!}
+                                @else
+                                    {!! Form::date('nascimento_data', null, ['class'=>'form-control data', 'placeholder'=>'dd/mm/yyyy'] ) !!}
+                                @endif
                             </div>
                             <div class="col-sm-5">
                                 {!! Form::text('nascimento_cidade', null, ['class'=>'form-control', 'placeholder'=>'Cidade']) !!}
@@ -174,22 +194,20 @@
                             </div>
                         </div>
 					</div>
-
-                    <hr />
-
-                    
-
-                     
-
-
 				</div>
 				<!-- /.box-body -->
 				<div class="box-footer">
-					<button type="submit" class="btn btn-info pull-right">Próximo</button>
+                    <button type="reset" class="btn btn-default"><span class="fa fa-refresh"></span><span class='hidden-xs'> Resetar </span></button>
+					<a class='btn btn-info' href='{{ url()->previous() }}'> <span class="fa  fa-arrow-circle-o-left"></span><span class='hidden-xs'> Voltar </span></a>
+                    @if(isset($discipulo))
+                        {!! Form::submit('Salvar', ['class'=>'btn btn-primary btn-acao pull-right']) !!}
+                    @else
+                        {!! Form::submit('Proximo', ['class'=>'btn btn-primary btn-acao pull-right']) !!}
+                    @endif
 				</div>
 				<!-- /.box-footer -->
-			</form>
-		</div>
-	</div>
-</div>
+		{!! Form::close() !!}
+    <!-- / Form ends -->
+
+</div><!-- /.panel-default -->
 @endsection

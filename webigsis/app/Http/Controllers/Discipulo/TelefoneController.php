@@ -117,9 +117,6 @@ class TelefoneController extends Controller
         // Pega os dados do formulário
         $dataForm = $request->all();
 
-        // Formata o numero
-        //$dataForm['numero'] = formataNumero($dataForm['numero']);
- 
         //Localiza o telefone na base de dados
         $telefone = $this->telefone->find($id);
 
@@ -134,7 +131,6 @@ class TelefoneController extends Controller
             return redirect()
                 ->route('telefone.edit', $id )
                 ->with(['alert'=>'Não foi possivel gravar os dados!', 'alert_type'=>'danger']);
-                //$this->telefone->discipulo_id
     }
 
     /**
@@ -163,36 +159,3 @@ class TelefoneController extends Controller
 
     
 }
-
-/*
-function formataNumero($str) {
-    
-        $str = preg_replace("/[^0-9]/", "", $str);
-     
-        switch (strlen($str)) {
-            case 8:
-                $subStr2 = substr($str, 4);
-                $subStr1 = substr($str, 0, 4);
-                $str = $subStr1.'-'.$subStr2;
-                break;
-            case 9:
-                $subStr2 = substr($str, 5);
-                $subStr1 = substr($str, 0, 5);
-                $str = $subStr1.'-'.$subStr2;
-                break;
-            case 10:
-                $subStr2 = substr($str, 6);
-                $subStr1 = substr($str, 2, 4);
-                $subStr0 = substr($str, 0, 2);
-                $str = '('.$subStr0.') '.$subStr1.'-'.$subStr2;
-                break;
-            case 11:
-                $subStr2 = substr($str, 7);
-                $subStr1 = substr($str, 2, 5);
-                $subStr0 = substr($str, 0, 2);
-                $str = '('.$subStr0.') '.$subStr1.'-'.$subStr2;
-                break;
-        }
-    
-        return $str;
-    }*/

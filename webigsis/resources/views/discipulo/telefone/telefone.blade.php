@@ -1,4 +1,5 @@
-@extends('_discipulo.base')
+@extends('discipulo._base')
+
 
 @section('title_header')
     <h3 class="box-title"><span class="fa fa-phone"></span> Telefones</h3>
@@ -14,16 +15,9 @@
     @endif
 @endsection        
 
-@section('content_body')<!-- box-body -->
 
-    @if( isset($errors) && count($errors)>0 )
-        <div class="alert alert-danger">
-            @foreach ( $errors->all() as $error )
-                <p>{{$error}}</p>
-            @endforeach    
-        </div>
-    @endif
-    
+@section('content_body')<!-- box-body -->
+ 
 <div class="panel panel-default" style="margin-bottom: 0;">
 
     @if ( isset($telefone) )
@@ -37,53 +31,53 @@
         
         {!! Form::hidden('discipulo_id', $id) !!}
 
-        <div class="panel-body">
+            <div class="panel-body">
 
-        
-            <div class="col-sm-4">
-                {!! Form::label('numero', 'Telefone') !!} 
-                {!! Form::tel('numero', (isset($telefone))?$telefone->numero:old('numero'), [
-                    'id'=>'numero', 
-                    'class'=>'form-control', 
-                    'placeholder'=>'DDD + Numero'
-                ]) !!}
-                <p class='explicacao'>Numero de telefone e DDD</p>
-            </div>
-                            
-            <div class="col-sm-4">
-                {!! Form::label('tipo', 'Tipo') !!}
-                {!! Form::text('tipo', (isset($telefone))?$telefone->tipo:old('tipo'), ['class'=>'form-control', 'placeholder'=>'tipo']) !!}
-                <p class='explicacao'>Celular, Fixo, Residencial, Trabalho</p>
-            </div>
-
-            <div class="col-sm-4">
-                {!! Form::label('descricao', 'Obs.') !!}
-                {!! Form::text('descricao', (isset($telefone))?$telefone->descricao:old('descricao'), ['class'=>'form-control', 'placeholder'=>'Obs.']) !!}
-                <p class='explicacao'>Operadora, Watswapp, Contato</p>
-            </div>
-
-        </div><!-- ./panel-body  -->
-
-        <div class="panel-footer">
-            <button type="reset" class="btn btn-default"><span class="fa fa-refresh"></span> Resetar</button>
             
-            <div class='pull-right'>
-                @if ( !isset($telefone) )
-                    <div class="checkbox pull-left" style="margin-right:10px;">
-                      <label>
-                        <input name='add_outro' value="add_outro" type="checkbox"> Adicionar mais outro número? 
-                      </label>
-                    </div>
-                @endif
-                <button type="submit" class="btn btn-primary" style="margin-left:10px;"><span class="fa fa-save"></span> Salvar</button>
-                <a href="{{ route('discipulo.show', $id)}}" class="btn btn-success"><span class="fa fa-user-circle"></span> Ver Ficha</a>
-            </div>
-        </div><!-- ./panel-footer  -->
+                <div class="col-sm-4">
+                    {!! Form::label('numero', 'Telefone') !!} 
+                    {!! Form::tel('numero', (isset($telefone))?$telefone->numero:old('numero'), [
+                        'id'=>'numero', 
+                        'class'=>'form-control', 
+                        'placeholder'=>'DDD + Numero'
+                    ]) !!}
+                    <p class='explicacao'>Numero de telefone e DDD</p>
+                </div>
+                                
+                <div class="col-sm-4">
+                    {!! Form::label('tipo', 'Tipo') !!}
+                    {!! Form::text('tipo', (isset($telefone))?$telefone->tipo:old('tipo'), ['class'=>'form-control', 'placeholder'=>'tipo']) !!}
+                    <p class='explicacao'>Celular, Fixo, Residencial, Trabalho</p>
+                </div>
 
+                <div class="col-sm-4">
+                    {!! Form::label('descricao', 'Obs.') !!}
+                    {!! Form::text('descricao', (isset($telefone))?$telefone->descricao:old('descricao'), ['class'=>'form-control', 'placeholder'=>'Obs.']) !!}
+                    <p class='explicacao'>Operadora, Watswapp, Contato</p>
+                </div>
 
+            </div><!-- ./panel-body  -->
+
+            <div class="panel-footer">
+                
+                <button type="reset" class="btn btn-default"><span class="fa fa-refresh"></span><span class='hidden-xs'> Resetar </span></button>
+                <a class='btn btn-info' href='{{ url()->previous() }}'> <span class="fa  fa-arrow-circle-o-left"></span><span class='hidden-xs'> Voltar </span></a>
+                <a href="{{ route('discipulo.show', $id)}}" class="btn btn-success"><span class="fa fa-user-circle"></span><span class='hidden-xs'> Ver Ficha </span></a>
+
+                <div class='pull-right'>
+                    @if ( !isset($telefone) )
+                        <div class="checkbox pull-left" style="margin-right:10px;">
+                        <label>
+                            <input name='add_outro' value="add_outro" type="checkbox"> Adicionar mais outro número? 
+                        </label>
+                        </div>
+                    @endif
+                    <button type="submit" class="btn btn-primary" style="margin-left:10px;"><span class="fa fa-save"></span> Salvar</button>
+                </div>
+            </div><!-- ./panel-footer  -->
         </form>
     
-  </div><!-- panel -->      
+</div><!-- panel -->      
 @endsection 
 
 

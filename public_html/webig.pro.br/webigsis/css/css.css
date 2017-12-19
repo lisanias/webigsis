@@ -26,5 +26,17 @@
     padding-top: 8px;
 }
 
+.btn-acao {
+    width: 12em;
+}
+
+.btn i {
+    margin: 0 4px;
+}
+
+.data {
+    min-width: 155px;
+}
+
 
 
