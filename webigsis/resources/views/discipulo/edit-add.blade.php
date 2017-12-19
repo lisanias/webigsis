@@ -13,6 +13,8 @@
 
         @if( isset($errors) && count($errors)>0 )
             <div class="alert alert-danger">
+                <h3><span class="fa  fa-exclamation-triangle"></span> Atenção</h3>
+                <p><strong>Encontramos os seguintes erros no preenchimento do formulário:</strong></p><hr />
                 <ul>
                 @foreach ( $errors->all() as $error )
                     <li>{{$error}}</li>

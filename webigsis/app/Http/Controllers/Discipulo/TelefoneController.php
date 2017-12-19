@@ -154,7 +154,7 @@ class TelefoneController extends Controller
         if( $delete )
             return redirect()
                 ->route( 'discipulo.show', $return_id )
-                ->with(['alert'=>'Telefone apagado.', 'alert_type'=>'alert']);
+                ->with(['alert'=>'Telefone apagado.', 'alert_type'=>'success']);
         else
             return redirect()
                 ->route('telefone.edit', $id )

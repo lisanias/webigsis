@@ -1,17 +1,17 @@
-@extends('discipulo.base')
+@extends('_discipulo.base')
 
 @section('title_header')
     <h3 class="box-title"><span class="fa fa-phone"></span> Telefones</h3>
-@if ( isset($telefone) )
-    <div class="pull-right">   
-    
-        {!! Form::open(['route' => ['telefone.destroy', $telefone->id], 'method' => 'DELETE']) !!}
-            {!! Form::button("<span class='fa fa-remove'></span> Apagar este número", ['type'=>'input', 'class' => 'btn btn-danger btn-xs', 'title' => 'Atenção, esta ação apaga permanentemente']) !!}    
-           
-        {!! Form::close() !!} 
-    
-    </div>
-@endif
+    @if ( isset($telefone) )
+        <div class="pull-right">   
+        
+            {!! Form::open(['route' => ['telefone.destroy', $telefone->id], 'method' => 'DELETE']) !!}
+                {!! Form::button("<span class='fa fa-remove'></span> Apagar este número", ['type'=>'input', 'class' => 'btn btn-danger btn-xs', 'title' => 'Atenção, esta ação apaga permanentemente']) !!}    
+            
+            {!! Form::close() !!} 
+        
+        </div>
+    @endif
 @endsection        
 
 @section('content_body')<!-- box-body -->
