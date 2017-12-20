@@ -44,6 +44,7 @@ Route::group(['namespace' => 'Discipulo', 'middleware' => 'auth'], function() {
 
 	Route::get('telefone/{discipulo_id}/create', 'TelefoneController@create'); // para apagar
 	
+	Route::post('discipulo/search', 'DiscipuloController@search')->name('procura');
 	Route::resource('discipulo', 'DiscipuloController');
 	Route::resource('telefone', 'TelefoneController');
 });

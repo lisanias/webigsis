@@ -59,20 +59,22 @@
             </div><!-- ./panel-body  -->
 
             <div class="panel-footer">
-                
-                <button type="reset" class="btn btn-default"><span class="fa fa-refresh"></span><span class='hidden-xs'> Resetar </span></button>
-                <a class='btn btn-info' href='{{ url()->previous() }}'> <span class="fa  fa-arrow-circle-o-left"></span><span class='hidden-xs'> Voltar </span></a>
-                <a href="{{ route('discipulo.show', $id)}}" class="btn btn-success"><span class="fa fa-user-circle"></span><span class='hidden-xs'> Ver Ficha </span></a>
+                <div>
+                    <button type="reset" class="btn btn-default"><span class="fa fa-refresh"></span><span class='hidden-xs'> Resetar </span></button>
+                    <a class='btn btn-info' href='{{ url()->previous() }}'> <span class="fa  fa-arrow-circle-o-left"></span><span class='hidden-xs hidden-sm'> Voltar </span></a>
+                    <a href="{{ route('discipulo.show', $id)}}" class="btn btn-success"><span class="fa fa-user-circle"></span><span class='hidden-xs hidden-sm'> Ver Ficha </span></a>
 
-                <div class='pull-right'>
-                    @if ( !isset($telefone) )
-                        <div class="checkbox pull-left" style="margin-right:10px;">
-                        <label>
-                            <input name='add_outro' value="add_outro" type="checkbox"> Adicionar mais outro número? 
-                        </label>
-                        </div>
-                    @endif
-                    <button type="submit" class="btn btn-primary" style="margin-left:10px;"><span class="fa fa-save"></span> Salvar</button>
+                    <div class='pull-right'>
+                        @if ( !isset($telefone) )
+                            <div class="checkbox pull-left" style="margin-right:10px;">
+                            <label>
+                                <input name='add_outro' value="add_outro" type="checkbox"><span class='visible-xs-block'><small> Outro nº?</small></span><span class='hidden-xs'> Adicionar outro número?</span> 
+                            </label>
+                            </div>
+                        @endif
+                        <button type="submit" class="btn btn-primary" style="margin-left:10px;"><span class="fa fa-save"></span> Salvar</button>
+                    </div>
+                    <div class="clearfix"></div>
                 </div>
             </div><!-- ./panel-footer  -->
         </form>

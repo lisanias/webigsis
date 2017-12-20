@@ -21,8 +21,12 @@ class Telefone extends Model
 
 function formataNumero($str) {
     
+        // extrai apenas os numeros
         $str = preg_replace("/[^0-9]/", "", $str);
+        // retira o zero do inicio, se houver
+        $str = preg_replace("/^[0]/", "", $str);
      
+        // formata os telefones
         switch (strlen($str)) {
             case 8:
                 $subStr2 = substr($str, 4);

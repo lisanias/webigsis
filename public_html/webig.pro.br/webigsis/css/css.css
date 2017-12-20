@@ -35,7 +35,11 @@
 }
 
 .data {
-    min-width: 155px;
+    min-width: 120px;
+}
+
+.box-footer .pagination {
+    margin: 0;
 }
 
 

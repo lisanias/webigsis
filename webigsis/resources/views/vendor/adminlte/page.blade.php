@@ -31,6 +31,7 @@
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
+
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
                             @each('adminlte::partials.menu-item-top-nav', $adminlte->menu(), 'item')
@@ -53,6 +54,7 @@
                     <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
                 </a>
             @endif
+                
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
 
@@ -90,6 +92,16 @@
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
+                
+                <!-- FORMULARIO PARA PROCURA DE DISCIPULOS -->
+                {!! Form::open( ['route'=>'procura', 'class'=>'sidebar-form'] ) !!}
+                    <div class="input-group">
+                        <input name="str-find" class="form-control" placeholder="Procurar discípulo" type="text">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                {!! Form::close() !!}
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">

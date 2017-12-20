@@ -16,6 +16,7 @@
 
             <!-- LISTAGEM -->
             <div class="box-body">
+                {!! $discipulos->links() !!}
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
@@ -48,21 +49,19 @@
                                 </div>
                             </td>
                             <td>
-                                <div style="display: inline-block;">
+                                <div class="btn-group" data-toggle="btn-toggle" style="display: inline-block;">
                                     <a href="{{ route('discipulo.show', $discipulo->id) }}" class="btn btn-success btn-xs"><span class="fa fa-check"></span></a>
                                     <a href="{{ route('discipulo.edit', $discipulo->id) }}" class="btn btn-info btn-xs"><span class="fa fa-edit"></span></a>
-                                    <div class="pull-right hidden-xs">
-                                        {!! Form::open(['route' => ['discipulo.destroy', $discipulo->id], 'method' => 'DELETE']) !!}
-                                            {!! Form::button("<span class='fa fa-remove'></span>", ['type'=>'input', 'class' => 'btn btn-danger btn-xs', 'title' => 'Atenção, esta ação apaga permanentemente', 'style'=>"margin-left: 3px;"]) !!}
-                                        {!! Form::close() !!}
-                                    </div>
+                                    
                                 </div>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
+                {!! $discipulos->links() !!}
             </div><!-- /.box-body -->
+            
             <!-- /LISTAGEM -->
 
         </div><!-- /.box-info -->

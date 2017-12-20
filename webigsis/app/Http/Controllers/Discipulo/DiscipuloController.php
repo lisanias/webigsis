@@ -11,6 +11,7 @@ use App\Http\Requests\Discipulo\DiscipuloFormRequest;
 class DiscipuloController extends Controller
 {
     private $discipulo;
+    private $totalPage = 15;
 
     public function __construct(Discipulo $discipulo)
     {
@@ -24,7 +25,7 @@ class DiscipuloController extends Controller
      */
     public function index()
     {
-        $discipulos = Discipulo::all();
+        $discipulos = $this->discipulo->orderBy('name', 'ASC', SORT_REGULAR, true)->paginate($this->totalPage);
         return view('discipulo.list', compact('discipulos'));
     }
 
@@ -166,6 +167,13 @@ class DiscipuloController extends Controller
                     return redirect()
                         ->route('discipulo.show', $id )
                         ->with(['alert'=>'Não foi possivel apagar este discipulo!', 'alert_type'=>'danger']);
+    }
+
+    public function search()
+    {
+        $str = $_POST['str-find'];
+        
+        return "Procurando... {$str}";
     }
 
 }

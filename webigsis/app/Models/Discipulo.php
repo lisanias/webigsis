@@ -68,11 +68,16 @@ class Discipulo extends Model
 
     public function setCepAttribute($value) {
 
-        $str = preg_replace("/[^0-9]/", "", $value);                
-        $subStr1 = substr($str, 0, 4);
-        $subStr2 = substr($str, 5);
-        $str = $subStr1.'-'.$subStr2;
-                
+        $str = preg_replace("/[^0-9]/", "", $value);
+
+        if( strlen($str)==8 ){          
+            $subStr1 = substr($str, 0, 5);
+            $subStr2 = substr($str, 5);
+            $str = $subStr1.'-'.$subStr2;
+        }
+        else{
+            $str = null;
+        }
         $this->attributes['cep'] = $str;
     }
     
@@ -89,7 +94,7 @@ function primeiraMaiuscula($value) {
         {
             $palavra[$i] = mb_convert_case($palavra[$i], MB_CASE_TITLE, 'UTF-8');
         }
-        $nomeconvertido = $nomeconvertido." ".$palavra[$i];
+        $nomeconvertido .= $palavra[$i]." ";
     }
 
     return $nomeconvertido;
