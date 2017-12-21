@@ -42,5 +42,6 @@
     margin: 0;
 }
 
-
-
+.vcenter>tbody>tr>td, .center>tbody>tr>th {
+    vertical-align: middle;
+}

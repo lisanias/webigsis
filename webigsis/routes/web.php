@@ -42,7 +42,7 @@ Route::group(['middleware' => 'auth'], function() {
 // discupulos
 Route::group(['namespace' => 'Discipulo', 'middleware' => 'auth'], function() {
 
-	Route::get('telefone/{discipulo_id}/create', 'TelefoneController@create'); // para apagar
+	Route::get('telefone/{discipulo_id}/create', 'TelefoneController@create'); // opicional - não esta sendo usado mais
 	
 	Route::post('discipulo/search', 'DiscipuloController@search')->name('procura');
 	Route::resource('discipulo', 'DiscipuloController');

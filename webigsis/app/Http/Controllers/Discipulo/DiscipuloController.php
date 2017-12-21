@@ -172,8 +172,19 @@ class DiscipuloController extends Controller
     public function search()
     {
         $str = $_POST['str-find'];
+
+        $discipulos = $this->discipulo->orderBy('name', 'ASC', SORT_REGULAR, true)->where('name', 'LIKE', '%'.$str.'%')->paginate($this->totalPage);
         
-        return "Procurando... {$str}";
+        return view('discipulo.list', compact('discipulos', 'str'));
+
+
+        /*$discipulos = Discipulo::where('name', 'LIKE', '%'.$str.'%')
+            ->orderBy('name')
+            ->get()'ASC', SORT_REGULAR, true;->get()*/
+        
+        //return "Procurando... {$str}<br>$discipulos";
+        //return view('discipulo.list', compact('discipulos'));
+
     }
 
 }
