@@ -50,10 +50,6 @@ class CreateDiscipulosTable extends Migration
             $table->foreign('lider_id')
                 ->references('id')
                 ->on('discipulos');
-
-            $table->foreign('recebidoModo_id')
-                ->references('id')
-                ->on('recebido_modos');
         });
     }
 
