@@ -36,7 +36,7 @@ class CreateCelulasTable extends Migration
                 ->references('id')
                 ->on('discipulos');
 
-            $table->foreign('lider_id')
+            $table->foreign('anfiteão_id')
                 ->references('id')
                 ->on('discipulos');
         });
