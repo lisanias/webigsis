@@ -32,7 +32,7 @@ class CreateDiscipulosTable extends Migration
             $table->boolean('escolaMinisterios')->nullable();
             $table->boolean('batismo')->nullable();
             $table->date('batismo_data')->nullable();
-            $table->integer('recebidoModo_id')->unsigned()->nullable();
+            $table->integer('recebidoModo_id')->nullable();
             $table->boolean('ativo')->nullable();
             $table->string('logradouro', 200)->nullable();
             $table->string('numero', 20)->nullable();
