@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Discipulo extends Model
 {
@@ -80,7 +81,29 @@ class Discipulo extends Model
         }
         $this->attributes['cep'] = $str;
     }
+
     
+    /** 
+     *  ANIVERSARIANTES DA SEMANA / MES
+     *  No Controler colocar: $niverDaSemana = Discipulo::WeekBirthdays()->get();
+     */
+    public function scopeWeekBirthdays($query)
+        {
+            return $query
+                ->whereRaw('extract(week from nascimento_data) = ?', [Carbon::today()->weekOfYear])
+                ->orderByRaw ('extract(day from nascimento_data)', 'asc');
+        }
+
+    public function scopeMonthBirthdays($query)
+        {
+            return $query
+                ->whereRaw('extract(month from nascimento_data) = ?', [Carbon::today()->month])
+                ->orderByRaw ('extract(day from nascimento_data)', 'asc');
+            
+        }
+    
+            
+            
 }
 
 function primeiraMaiuscula($value) {

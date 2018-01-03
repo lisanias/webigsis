@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Discipulo;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,6 +20,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $aniversariantes = Discipulo::MonthBirthdays()->paginate(8);
+        $discipulos = Discipulo::get();
+        $last_discipulos = Discipulo::orderBy('created_at', 'DES', SORT_REGULAR, true)->paginate(5);
+        return view('home', compact('discipulos', 'aniversariantes', 'last_discipulos'));
     }
 }
