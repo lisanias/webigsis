@@ -125,7 +125,7 @@ return [
                 [
                     'text'  => 'Listar',
                     'url'   => 'user',
-                    'icon'  => 'edit',
+                    'icon'  => 'list-alt',
                 ],
                 [
                     'text'  => 'Novo Usuário',
@@ -146,6 +146,22 @@ return [
                 [
                     'text'  => 'Listar',
                     'url'   => 'discipulo',
+                    'icon'  => 'list-alt',
+                ],
+            ],
+        ],
+        [ 
+            'text' => 'Celulas',
+            'icon' => 'bullseye',
+            'submenu' => [
+                [
+                    'text'  => 'Adicionar',
+                    'url'   => 'celulas/create',
+                    'icon'  => 'plus-circle',
+                ],
+                [
+                    'text'  => 'Listar',
+                    'url'   => 'celulas',
                     'icon'  => 'list-alt',
                 ],
             ],
