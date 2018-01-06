@@ -8,7 +8,7 @@
 
    	<!-- DESTAQUES INICIAIS -->
     <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-3 col-sm-6 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
@@ -24,7 +24,7 @@
         </div>
 
         <!-- ./col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-3 col-sm-6 col-xs-6">
           
           <!-- small box -->
           <div class="small-box bg-yellow">
@@ -44,7 +44,7 @@
         </div>
         
         <!-- col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-3 col-sm-6 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -63,7 +63,7 @@
         </div>
         
         <!-- col -->
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-3 col-sm-6 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
