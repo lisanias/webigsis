@@ -15,11 +15,11 @@ class CreateCelulasTable extends Migration
     {
         Schema::create('celulas', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('lider_id')->unsigned(); //lider de celula
             $table->string('name', 150)->nullable();
             $table->enum('diaDaSemana', ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado']);
-            $table->datetime('horario');
-            $table->integer('lider_id')->unsigned(); //lider de celula
-            $table->integer('anfiteão_id')->unsigned()->nullable();
+            $table->time('horario');
+            $table->integer('anfiteao_id')->unsigned()->nullable();
 
             $table->string('logradouro', 200)->nullable();
             $table->string('numero', 20)->nullable();

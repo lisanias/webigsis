@@ -45,7 +45,7 @@
                         <div class="form-group">
                             {!! Form::label('lider_id', 'Lider') !!}
                             <div>
-                                {!! Form::select('lider_id', $lideres, null, ['placeholder'=>'Escola um lider de celula', 'class'=>'form-control'] ) !!}
+                                {!! Form::select('lider_id', $lideres, null, ['placeholder'=>'Escolha um lider de celula', 'class'=>'form-control'] ) !!}
                             </div>
                         </div>
 

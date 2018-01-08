@@ -156,12 +156,12 @@ return [
             'submenu' => [
                 [
                     'text'  => 'Adicionar',
-                    'url'   => 'celulas/create',
+                    'url'   => 'celula/create',
                     'icon'  => 'plus-circle',
                 ],
                 [
                     'text'  => 'Listar',
-                    'url'   => 'celulas',
+                    'url'   => 'celula',
                     'icon'  => 'list-alt',
                 ],
             ],
