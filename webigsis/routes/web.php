@@ -26,8 +26,6 @@ Route::group([
 		'middleware' 	=> 'auth',
 	    //'prefix'		=> 'discipulo',
 	], function() {
-
-	//Route::get('telefone/{discipulo_id}/create', 'TelefoneController@create'); // opicional - não esta sendo usado mais
 	
 	Route::post('search', 'DiscipuloController@search')->name('procura');
 	Route::resource('discipulo', 'DiscipuloController');

@@ -9,6 +9,14 @@ use App\Models\Discipulo;
 
 class CelulaController extends Controller
 {
+    private $celula;
+    private $totalPage = 15;
+
+    public function __construct(Celula $celula)
+    {
+        $this->celula = $celula;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +61,23 @@ class CelulaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // Pega todos os dados que vem do formulário
+        $dataForm = $request->all();
+
+        // Faz o cadastro na base de dados
+        $celula = $this->celula->create($dataForm);
+        $celula_id = $celula->id;
+
+        if( $celula ) 
+            return redirect()
+                ->route( 'celula.show', ['id'=>$celula_id] )
+                ->with(['alert'=>'Discipulo criado com sucesso! Adicione agora o telefone.', 'alert_type'=>'success']);
+                /*->route('discipulo.show', $discipulo_id)
+                ->with(['alert'=>'Discipulo adicionado com sucesso.', 'alert_type'=>'success']);*/
+        else
+            return redirect()
+                ->route('celula.add')
+                ->with(['alert'=>'Erro ao inserir', 'alert_type'=>'danger']);
     }
 
     /**

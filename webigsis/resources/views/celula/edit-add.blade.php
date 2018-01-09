@@ -30,45 +30,52 @@
 				<div class="box-body">
 
 					
-                    @if(!isset($celula))
-                    <div class="form-group">
-                        {!! Form::label('lider_id', 'Lider') !!}
-                        <div>
-                            {!! Form::select('lider_id', $lideres, null, ['placeholder'=>'Escolha um lider de celula', 'class'=>'form-control'] ) !!}
-                        </div>
-                    </div>
-                    @endif 
+                    <div class="form-inline">
+                        @if(!isset($celula))
+                            <div class="form-group">
+                                {!! Form::label('lider_id', 'Lider') !!}
+                                <div>
+                                    {!! Form::select('lider_id', $lideres, null, ['placeholder'=>'Escolha um lider de celula', 'class'=>'form-control'] ) !!}
+                                </div>
+                            </div>
+                        @endif 
 
-                    <div class="form-group">
-						{!! Form::label('name', 'Nome da célula') !!}
-						<div>
-							{!! Form::text( 'name', null, ['class'=>'form-control', 'placeholder'=>'Nome'] ) !!}
-						</div>
-					</div>
-
-                    <div class="form-group">
-                        {!! Form::label('diaDaSemana', 'Dia da Semana em que a célula é feita') !!}
-                        <div>
-                            {!! Form::select('diaDaSemana', ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'], null, ['placeholder'=>'Escolha um dia', 'class'=>'form-control', 'required' ] ) !!}
-                        </div>
+                        <div class="form-group">
+    						{!! Form::label('name', 'Nome da célula') !!}
+    						<div>
+    							{!! Form::text( 'name', null, ['class'=>'form-control', 'placeholder'=>'Nome'] ) !!}
+    						</div>
+    					</div>
                     </div>
 
+                    <div class="form-inline">
+                        <div class="form-group">
+                            {!! Form::label('diaDaSemana', 'Dia da Semana') !!}
+                            <div>
+                                {!! Form::select('diaDaSemana', ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'], null, ['placeholder'=>'Escolha um dia', 'class'=>'form-control', 'required' ] ) !!}
+                            </div>
+                        </div>
 
-					<div class="form-group">
-						{!! Form::label('horario', 'Horário') !!}
-						<div>
-							{!! Form::time( 'horario', null, ['class'=>'form-control'] ) !!}
-						</div>
-					</div>
+
+    					<div class="form-group">
+    						{!! Form::label('horario', 'Horário') !!}
+    						<div>
+    							{!! Form::time( 'horario', null, ['class'=>'form-control'] ) !!}
+    						</div>
+    					</div>
+                    </div>
+
 
 					<label>Endereço</label>
 					<div class="form-group">
                         <div class='row'>
-                            <div class="col-sm-8">
+                            <div class="col-md-9">
                                 {!! Form::text('logradouro', null, ['class'=>'form-control', 'placeholder'=>'Rua, Avenida, etc']) !!}
+
+
                             </div>
                             
-                            <div class="col-sm-2">
+                            <div class="col-md-3">
                                 {!! Form::text('numero', null, ['class'=>'form-control', 'placeholder'=>'Número']) !!}
                             </div>
                         </div>
@@ -76,7 +83,7 @@
 
                     <div class="form-group">
                         <div class='row'>
-                            <div class="col-sm-10">
+                            <div class="col-md-12">
                                 {!! Form::text('bairro', null, ['class'=>'form-control', 'placeholder'=>'Bairro']) !!}
                             </div>
                         </div>
@@ -84,33 +91,27 @@
 
                     <div class="form-group">
                         <div class='row'>
-                            <div class="col-sm-6">
+                            <div class="col-md-6">
                                 {!! Form::text('cidade', null, ['class'=>'form-control', 'placeholder'=>'Cidade']) !!}
                             </div>
                             
-                            <div class="col-sm-2">
+                            <div class="col-md-3">
                                 {!! Form::text('uf', null, ['class'=>'form-control', 'placeholder'=>'UF']) !!}
                             </div>
                             
-                            <div class="col-sm-2">
+                            <div class="col-md-3">
                                 {!! Form::text('cep', null, ['class'=>'form-control', 'placeholder'=>'CEP']) !!}
                             </div>
                         </div>
 					</div>
 
                     <div class="form-group">
-                        <div class='row'>
-                            <div class="col-sm-10">
-                                {!! Form::text('bairro', null, ['class'=>'form-control', 'placeholder'=>'Bairro']) !!}
+                        <div class="row"><div class="col-md-12">
+                            {!! Form::label('obs', 'Observações') !!}
+                            <div>
+                                {!! Form::textarea( 'obs', null, ['class'=>'form-control', 'placeholder'=>'Observações...'] ) !!}
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        {!! Form::label('obs', 'Observações') !!}
-                        <div>
-                            {!! Form::text( 'obs', null, ['class'=>'form-control', 'placeholder'=>'Observações...'] ) !!}
-                        </div>
+                        </div></div>
                     </div>
 
                     
@@ -122,7 +123,7 @@
                     @if(isset($discipulo))
                         {!! Form::submit('Salvar', ['class'=>'btn btn-primary btn-acao pull-right']) !!}
                     @else
-                        {!! Form::submit('Proximo', ['class'=>'btn btn-primary btn-acao pull-right']) !!}
+                        {!! Form::submit('Salvar', ['class'=>'btn btn-primary btn-acao pull-right']) !!}
                     @endif
 				</div>
 				<!-- /.box-footer -->
@@ -130,4 +131,5 @@
     <!-- / Form ends -->
 
 </div><!-- /.panel-default -->
+
 @endsection

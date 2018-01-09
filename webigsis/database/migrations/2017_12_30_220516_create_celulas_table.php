@@ -19,7 +19,7 @@ class CreateCelulasTable extends Migration
             $table->string('name', 150)->nullable();
             $table->enum('diaDaSemana', ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado']);
             $table->time('horario');
-            $table->integer('anfiteao_id')->unsigned()->nullable();
+            $table->integer('anfitriao_id')->unsigned()->nullable();
 
             $table->string('logradouro', 200)->nullable();
             $table->string('numero', 20)->nullable();
@@ -28,7 +28,7 @@ class CreateCelulasTable extends Migration
             $table->string('uf', 2)->nullable();
             $table->string('cep', 9)->nullable();
 
-            $table->text('obs');
+            $table->text('obs')->nullable();
 
             $table->timestamps();
 

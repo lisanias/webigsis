@@ -10,6 +10,7 @@ class Celula extends Model
     use Notifiable;
 
     protected $fillable = [
+        'lider_id', 
         'name', 
         'diaDaSemana', 
         'horario', 
