@@ -22,7 +22,7 @@
 
     <!-- form start -->
         @if(isset($celula))
-            {!! Form::model($celula, ['route' => ['celula.update', $celula->id], 'class'=>'form',' data-parsley-validate', 'method'=>'put'] ) !!}
+            {!! Form::model($celula, ['route' => ['celula.update', $celula->id], 'class'=>'form', 'data-parsley-validate', 'method'=>'put'] ) !!}
         @else	
             {!! Form::open( ['route' => 'celula.store', 'class'=>'form',' data-parsley-validate'] ) !!}
         @endif
@@ -52,7 +52,7 @@
                         <div class="form-group">
                             {!! Form::label('diaDaSemana', 'Dia da Semana') !!}
                             <div>
-                                {!! Form::select('diaDaSemana', ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'], null, ['placeholder'=>'Escolha um dia', 'class'=>'form-control', 'required' ] ) !!}
+                                {!! Form::select('diaDaSemana', $diasDaSemana, null, ['placeholder'=>'Escolha um dia', 'class'=>'form-control', 'required' ] ) !!}
                             </div>
                         </div>
 

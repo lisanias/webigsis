@@ -37,13 +37,6 @@ class Discipulo extends Model
     protected $dates = ['nascimento_data', 'batismo_data'];
 
 
-    public function celulas()
-    {
-        return $this->hasMany(Celula::class, 'lider_id');
-    }
-
-    
-
     public function setNameAttribute($value) {
         $this->attributes['name'] = primeiraMaiuscula($value);
     }

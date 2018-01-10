@@ -8,7 +8,7 @@
 
 @section('content')
 <div class='row'>
-	<div class="col-lg-offset-2 col-lg-8 col-md-offset-1 col-md-10 col-sm-12">
+	<div class="col-md-12 col-sm-12">
 		<div class="box box-info">
 			<div class="box-header with-border">
 
