@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Discipulo;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Discipulo\DiscipuloFormRequest;
 use App\Models\Discipulo;
 use App\Models\Telefone;
-use App\Http\Requests\Discipulo\DiscipuloFormRequest;
+use App\Models\Celula;
 
 class DiscipuloController extends Controller
 {
@@ -116,9 +117,14 @@ class DiscipuloController extends Controller
                 ->where('e_lider', 1)
                 ->pluck('name', 'id');
 
+        $celulas = Celula::get();
+        foreach ( $celulas as $celula ){
+            $selCelula[$celula->id] = $celula->lider->name.' / '.$celula->name; 
+        }
+
         $recebidoModo = [''=>'Não Membro', 1=>'Batismo', 2=>'Jurisdição'];
         
-        return view('discipulo.edit-add', compact('discipulo', 'lideres', 'recebidoModo'));
+        return view('discipulo.edit-add', compact('discipulo', 'lideres', 'recebidoModo', 'selCelula'));
     }
 
     /**

@@ -55,7 +55,6 @@
                 </table>
                 {!! $celulas->links() !!}
             </div><!-- /.box-body -->
-            
             <!-- /LISTAGEM -->
 
         </div><!-- /.box-info -->

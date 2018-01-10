@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Celula;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Celula\CelulaFormRequest;
 use App\Models\Celula;
 use App\Models\Discipulo;
 
@@ -11,6 +12,7 @@ class CelulaController extends Controller
 {
     private $celula;
     private $totalPage = 15;
+    private $diasDaSemana = ['Domingo'=>'Domingo', 'Segunda'=>'Segunda', 'Terça'=>'Terça', 'Quarta'=>'Quarta', 'Quinta'=>'Quinta', 'Sexta'=>'Sexta', 'Sabado'=>'Sabado'];
 
     public function __construct(Celula $celula)
     {
@@ -50,7 +52,9 @@ class CelulaController extends Controller
             ->where('e_lider', 1)
             ->pluck('name', 'id');
 
-        return view('celula.edit-add', compact('lideres'));
+        $diasDaSemana = $this->diasDaSemana;
+
+        return view('celula.edit-add', compact('lideres', 'diasDaSemana'));
     }
 
     /**
@@ -59,7 +63,7 @@ class CelulaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CelulaFormRequest $request)
     {
          // Pega todos os dados que vem do formulário
         $dataForm = $request->all();
@@ -89,8 +93,9 @@ class CelulaController extends Controller
     public function show($id)
     {
         $celula = Celula::find($id);
+        $discipulos = $celula->discipulos;
 
-        return view('celula.show', compact('celula'));
+        return view('celula.show', compact('celula', 'discipulos'));
     }
 
     /**
@@ -108,7 +113,9 @@ class CelulaController extends Controller
                 ->where('e_lider', 1)
                 ->pluck('name', 'id');
 
-        return view('celula.edit-add', compact('celula', 'lideres'));
+        $diasDaSemana = $this->diasDaSemana;
+
+        return view('celula.edit-add', compact('celula', 'lideres', 'diasDaSemana'));
     }
 
     /**
@@ -118,7 +125,7 @@ class CelulaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CelulaFormRequest $request, $id)
     {
         // Pega os dados do formulário
         $dataForm = $request->all();

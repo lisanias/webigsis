@@ -20,7 +20,7 @@
             <div class="box-header with-border">
                 <div class="pull-right">
                     {!! Form::open(['route' => ['celula.destroy', $celula->id], 'method' => 'DELETE']) !!}
-                        {!! Form::button("<i class='fa fa-remove'></i><span class='hidden-xs'> Deletar </span>", ['type'=>'input', 'class' => 'btn btn-danger', 'title' => 'Atenção, esta ação apaga permanentemente']) !!}
+                        {!! Form::button("<i class='fa fa-remove'></i><span class='hidden-xs'> Deletar </span>", ['type'=>'input', 'class' => 'btn btn-danger', 'title' => 'Atenção, esta ação apaga permanentemente', 'disabled']) !!}
                     {!! Form::close() !!} 
                 </div>
                 <a class='btn btn-info' href='{{ url()->previous() }}'> <i class="fa  fa-arrow-circle-o-left"></i><span class='hidden-xs'> Voltar </span></a>
@@ -44,7 +44,24 @@
 
             <div class="box-body">
                 <div class='row'>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                    	<div class="panel panel-info">
+                            <div class="panel-heading">Informações</div>
+                            <div class="panel-body">
+                                
+                                <!--  #####  Informações uteis da celula  #####  -->
+
+                                Horário: @if( $celula->horario ) <strong>{{ Carbon\Carbon::parse($celula->horario)->format('H:i') }} </strong> 
+                                @else 'Sem hora definida' @endif
+                                <br>
+                                Dia da semana: <strong>{{ $celula->diaDaSemana or 'Celual sem dia fixo ou não informado.' }}</strong>
+                                <br>
+                                Líder: <strong>{{ $celula->lider->name or 'Líder não informado... Insira um lider agora mesmo!' }}</strong>
+
+                            </div><!-- /.panel-body -->
+                        </div><!-- /.panel-info -->
+                    </div>
+                    <div class="col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">Endereço:</div>
                             <div class="panel-body">
@@ -76,23 +93,70 @@
                             </div><!-- /.panel-body -->
                         </div><!-- /.panel-default -->
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                     	<div class="panel panel-info">
-                            <div class="panel-heading">Informações</div>
+                            <div class="panel-heading">Observações</div>
                             <div class="panel-body">
                                 
-                                <!--  #####  ENDERECO  #####  -->
+                                <!--  #####  Informações uteis da celula  #####  -->
 
-                                Horário
-                                <br>
-                                Dia da semana
+                                <pre>{{ $celula->obs or 'Sem observações' }}</pre>
 
                             </div><!-- /.panel-body -->
                         </div><!-- /.panel-info -->
                     </div>
-
                  </div><!-- /.row -->
             </div><!-- /.div-body -->
+
+
+            <!-- LISTAGEM -->
+            <div class="box-body">
+
+				<div class='row'>
+                    <div class="col-md-6">
+                    	<div class="panel panel-warning">
+                            <div class="panel-heading">Discipulos desta célula</div>
+                            
+
+
+				                <table class="table table-hover vcenter">
+				                    <thead>
+				                    <tr>
+				                        <th class='hidden-xs'>
+				                                #
+				                        </th>
+				                        <th>Discipulo</th>                       
+				                        <th>Ação</th>
+				                    </tr>
+				                    </thead>
+				                    <tbody>
+				                    @foreach($discipulos as $discipulo)
+				                        <tr>
+				                            <td scope="row" class='hidden-xs'>
+				                                    {{$discipulo->id}}
+				                            </td>
+				                            <td>{{ $discipulo->name }}</td>
+				                            <td>
+				                                <div class="btn-group" data-toggle="btn-toggle" style="display: inline-block;">
+				                                    <a href="{{ route('discipulo.show', $discipulo->id) }}" class="btn btn-default btn-sm"><span class="fa fa-sign-in"></span></a>
+				                                </div>
+				                            </td>
+				                        </tr>
+				                    @endforeach
+				                    </tbody>
+				                </table>
+
+				            
+                        </div><!-- /.panel-default -->
+                    </div>
+                </div><!-- /.row -->
+
+            </div><!-- /.box-body -->
+            
+            <!-- /LISTAGEM -->
+
+
+
             <div class='box-footer'>
 
             </div>

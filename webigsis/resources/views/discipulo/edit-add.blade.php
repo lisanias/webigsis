@@ -43,22 +43,32 @@
                         <br />
 
                         <div class="form-group">
-                            {!! Form::label('lider_id', 'Lider') !!}
-                            <div>
-                                {!! Form::select('lider_id', $lideres, null, ['placeholder'=>'Escolha um lider de celula', 'class'=>'form-control'] ) !!}
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {!! Form::label('lider_id', 'Líder') !!}
+                                    <div>
+                                        {!! Form::select('lider_id', $lideres, null, ['placeholder'=>'Escolha um lider de celula', 'class'=>'form-control'] ) !!}
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    {!! Form::label('lider_id', 'Celula') !!}
+                                    <div>
+                                        {!! Form::select('celula_id', $selCelula, null, ['placeholder'=>'Escolha uma célula', 'class'=>'form-control'] ) !!}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-md-4">
                                     {!! Form::label('recebidoModo_id', 'Recebido Modo') !!}
                                     <div>
                                         {!! Form::select('recebidoModo_id', $recebidoModo, null, ['class'=>'form-control'] ) !!}
                                     </div>
                                 </div>
 
-                                <div class="col-sm-3">
+                                <div class="col-md-3">
                                     {!! Form::label('batismo_data', 'Data de Batismo') !!}
                                     <div>
                                         @if( isset($discipulo) )
@@ -113,19 +123,27 @@
 
                     </div>
                     
-                    <div class="form-group">
-						{!! Form::label('name', 'Nome') !!}
-						<div>
-							{!! Form::text( 'name', null, ['class'=>'form-control', 'placeholder'=>'Nome'] ) !!}
-						</div>
-					</div>
+                    <div class="row">
 
-					<div class="form-group">
-						{!! Form::label('email', 'E-mail') !!}
-						<div>
-							{!! Form::text( 'email', null, ['class'=>'form-control', 'placeholder'=>'email@dominio.com'] ) !!}
-						</div>
-					</div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+        						{!! Form::label('name', 'Nome') !!}
+        						<div>
+        							{!! Form::text( 'name', null, ['class'=>'form-control', 'placeholder'=>'Nome'] ) !!}
+        						</div>
+        					</div>
+                        </div>
+
+                        <div class="col-md-5">
+        					<div class="form-group">
+        						{!! Form::label('email', 'E-mail') !!}
+        						<div>
+        							{!! Form::text( 'email', null, ['class'=>'form-control', 'placeholder'=>'email@dominio.com'] ) !!}
+        						</div>
+        					</div>
+                        </div>
+
+                    </div>
 
 					<label>Endereço</label>
 					<div class="form-group">
