@@ -44,9 +44,13 @@ class DiscipuloController extends Controller
             ->where('e_lider', 1)
             ->pluck('name', 'id');
       
-        //dd($lideres);
+        $celulas = Celula::get();
+        $selCelula = [];
+        foreach ( $celulas as $celula ){
+            $selCelula[$celula->id] = $celula->lider->name.' / '.$celula->name; 
+        }
 
-        return view('discipulo.edit-add', compact('recebidoModo', 'lideres'));
+        return view('discipulo.edit-add', compact('recebidoModo', 'lideres', 'selCelula'));
     }
 
     /**
@@ -118,6 +122,7 @@ class DiscipuloController extends Controller
                 ->pluck('name', 'id');
 
         $celulas = Celula::get();
+        $selCelula = [];
         foreach ( $celulas as $celula ){
             $selCelula[$celula->id] = $celula->lider->name.' / '.$celula->name; 
         }
