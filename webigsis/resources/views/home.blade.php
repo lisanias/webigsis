@@ -6,7 +6,34 @@
 
 @section('content')
 
-   	<!-- DESTAQUES INICIAIS -->
+    <!-- AVISO IMPORTANTE -->
+    <div class="row">
+      <div class="col-md-12">
+          <div class="box box box-default">
+            <div class="box-header with-border">
+              <i class="fa fa-bullhorn"></i>
+
+              <h3 class="box-title">Informação importante</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+
+            <div class="box-body">
+              <div class="callout callout-danger">
+                <h4>O sistema está ativo!</h4>
+
+                <p>A partir de agora o sistema está ativo. <strong>Não insira dados de testes</strong>. Caso aconteja algum erro, envie para o Pr Lisanias (lisaniasloback@gmail.com), para providenciar a correção! Se tiver alguma necessidade ou idéia para melhorar o sistema, sinta-se a vontade para enviar sua sugestão.</p>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+    </div>
+
+    <!-- DESTAQUES INICIAIS -->
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-6">
           <!-- small box -->
