@@ -25,6 +25,7 @@
 ### Implatar ###
 
 * Visualizar discipulos sem célula
+* Colocar para inserir a celula em discipulos
 * ...
 
 ### Administrador do projeto ###
